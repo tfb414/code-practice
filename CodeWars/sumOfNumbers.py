@@ -8,5 +8,4 @@ def get_sum(a,b):
         total.append(range[1])
         range[1] -= 1
     return sum(total)
-    # add a line
 get_sum(0, -2)
