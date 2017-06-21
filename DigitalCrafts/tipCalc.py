@@ -11,6 +11,8 @@ if(serviceLevel == "bad"):
 finalAmount = billAmount + tip
 print ("Tip amount: $%.2f") % tip
 print ("Total amount: $%.2f") % finalAmount
+
 numberOfSplits = int(raw_input("How many ways do you want it split? "))
+
 splitAmount = (finalAmount / numberOfSplits)
 print ("Amount per person: %.2f") % splitAmount
