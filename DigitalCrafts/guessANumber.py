@@ -1,21 +1,23 @@
 from random import randint
 def guessANumber():
+    def requestGuess():
+        return int(raw_input("Guess my number! "))
     secretNumber = randint(0,10)
+    numberOfguesses = 3
     print "I am thinking of a number between 1 and 10."
-    guess = int(raw_input("Guess my number! "))
-    numberOfGuesses = 5
-    while (guess != secretNumber):
-        if(numberOfGuesses == 0):
-            print "You ran out of guesses!"
-        if(guess <  secretNumber):
-            print "%d is too low" % guess
-            numberOfGuesses -= 1
-            guess = int(raw_input("Guess my number! "))
+    guess = requestGuess()
+    while(guess != secretNumber):
+        numberOfguesses -= 1
+        if(numberOfguesses == 0):
+            print "You're out of guesses!"
+            return
+        if(guess < secretNumber):
+            print "%d is too low!" %guess
         if(guess > secretNumber):
-            print "%d is too high"
-            numberOfGuesses -= 1
-            guess = int(raw_input("Guess my number! "))
-        print "Yes! You Win!"
-        return
+            print "%d is too high!" %guess
+        guess = requestGuess()
+    print "You got it!"
+
     
 guessANumber()
+
