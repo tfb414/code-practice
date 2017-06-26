@@ -2,7 +2,6 @@ import os
 import time
 import matplotlib.pyplot as plot
 import matplotlib
-import matplotlib.font_manager as font_manager
 import numpy as np
 def lunch_tracker():
     restaurants = [["Chipotle", 0], ["Naan Stop",0], ["Lovies BBQ",0],["Bankok Thyme",0], ["Whole Foods",0]]
@@ -35,8 +34,6 @@ def print_list(two_dim_array, display):
 
     print "\n"  
 
-
-
 def menu(restaurants, menu_list):
     os.system("clear")
     print "Menu:"
@@ -46,39 +43,11 @@ def menu(restaurants, menu_list):
 
 def manage_restaurant_list(restaurants, menu_list):
     # manage_restaurant_menu_list = [["Add", add_restaurant]] you need to make is so that it can access the menu and the if statement
+    manage_restaurant_menu_list = [["Add", add_restaurant], ["Remove restaurant", remove_restaurant], ["Sort Restaurants", sort_restaurants],["Review visits", review_visits], ["Graph visits", graph_visits]]
     os.system("clear")
-    print "Options: \n 1. Add\n 2. Remove\n 3. Sort \n 4. View visits\n 5. Graph"
+    print_list(manage_restaurant_menu_list, False)
     update_choice = int(raw_input("Would you like to do? "))
-    
-    if(update_choice == 1):
-        add_restaurant(restaurants, menu_list)
-
-    if(update_choice == 2):
-        os.system("clear")
-        print_list(restaurants, False)
-        restaurant_name_to_remove = int(raw_input("What restaurant would you like to remove? "))
-        restaurants.remove(restaurants[restaurant_name_to_remove - 1])
-        menu(restaurants, menu_list)
-    if(update_choice == 3):
-        os.system("clear")
-        print("Your restaurant list has now been sorted by popularity!")
-        restaurants.sort(key = lambda x: x[1], reverse=True)
-        print_list(restaurants, True)
-        return_to_menu(restaurants, menu_list)
-    if(update_choice == 4):
-        os.system("clear")
-        print("please see your visits below")
-        print_list(restaurants, True)
-        return_to_menu(restaurants, menu_list)
-    if(update_choice == 5):
-        os.system("clear")
-        print("check it out!")
-        x_axis = extract_2d_into_array(0, restaurants)
-        y_axis = extract_2d_into_array(1, restaurants)
-        x_axis_width = np.arange(len(x_axis))
-        plot.bar(x_axis_width, y_axis, align="center", alpha=1)
-        plot.xticks(x_axis_width, x_axis)
-        plot.show()
+    manage_restaurant_menu_list[update_choice-1][1](restaurants, menu_list)
 
 def extract_2d_into_array(first_level, restaurants):
     fixed_data = []
@@ -98,5 +67,30 @@ def add_restaurant(restaurants, menu_list):
     restaurant_name_to_add = raw_input("What restaurant would you like to add? ")
     restaurants.append([restaurant_name_to_add, 0])
     menu(restaurants, menu_list)
-        
+def remove_restaurant(restaurants, menu_list):
+    os.system("clear")
+    print_list(restaurants, False)
+    restaurant_name_to_remove = int(raw_input("What restaurant would you like to remove? "))
+    restaurants.remove(restaurants[restaurant_name_to_remove - 1])
+    menu(restaurants, menu_list)
+def sort_restaurants(restaurants, menu_list):
+    os.system("clear")
+    print("Your restaurant list has now been sorted by popularity!")
+    restaurants.sort(key = lambda x: x[1], reverse=True)
+    print_list(restaurants, True)
+    return_to_menu(restaurants, menu_list)
+def review_visits(restaurants, menu_list):
+    os.system("clear")
+    print("please see your visits below")
+    print_list(restaurants, True)
+    return_to_menu(restaurants, menu_list)
+def graph_visits(restaurants, menu_list):
+    os.system("clear")
+    print("check it out!")
+    x_axis = extract_2d_into_array(0, restaurants)
+    y_axis = extract_2d_into_array(1, restaurants)
+    x_axis_width = np.arange(len(x_axis))
+    plot.bar(x_axis_width, y_axis, align="center", alpha=1)
+    plot.xticks(x_axis_width, x_axis)
+    plot.show()
 lunch_tracker()
