@@ -1,3 +1,6 @@
+# change it so that they can type in the name and then it will see if it matches
+# add dates, days, and weeks
+
 import os
 import time
 import matplotlib.pyplot as plot
