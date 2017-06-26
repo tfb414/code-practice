@@ -34,4 +34,4 @@ while not done:
         screen.blit(get_image('ball.png'), (x, y))
         
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(60) 
