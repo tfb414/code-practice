@@ -11,7 +11,6 @@ def print_list(two_dim_array, display, title, title_name):
     print "\n" 
 
 def add_title(title_name):
-
     spaces = (30 - len(title_name)) / 2
     print "*" * 30
     print (spaces * " ") + title_name.upper()
