@@ -37,12 +37,13 @@ def add_entry(phone_book):
 
 def look_up_entry(phone_book):
     name = raw_input("Whose record would you like to look up? ")
+    os.system('clear')
+    add_title(name.upper())
     print_dictionary_entry(name, phone_book)
     return_to_menu(phone_book)
 
 def list_entries(phone_book):
     for values in phone_book:
-        print values
         print_dictionary_entry(values, phone_book)
 
 def phone_book_app(phone_book):
