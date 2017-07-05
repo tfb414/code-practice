@@ -27,5 +27,5 @@ while not done:
         else: color = (255, 100, 0)
         pygame.draw.rect(screen, color, pygame.Rect(x, y, 60, 60))
         
-        pygame.display.flip()
+        pygame.display.update()
         clock.tick(60)

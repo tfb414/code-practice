@@ -10,7 +10,7 @@ def main():
     height = 480
     color = (97, 159, 182)
     wall_color = (255,255,0)
-    number_of_blocks = 2
+    number_of_blocks = 20
 
     pygame.init()
     screen = pygame.display.set_mode((width, height))
@@ -22,7 +22,7 @@ def main():
             pygame.sprite.Sprite.__init__(self)
             self.xloc = width
             self.yloc = random.randint(10, height)
-            self.speed = random.randint(1, 5)
+            self.speed = random.randint(1, 10)
             self.rect = pygame.Rect(self.xloc, self.yloc, 30, 30)
 
         def make_and_move(self):
@@ -61,10 +61,10 @@ def main():
             self.rect = pygame.Rect(self.xloc, self.yloc,self.width, self.height)
             pygame.draw.rect(screen, color, pygame.Rect(self.rect))
             pressed = pygame.key.get_pressed()
-            if pressed[pygame.K_UP]: self.yloc -= 5
-            if pressed[pygame.K_DOWN]: self.yloc  += 5
-            if pressed[pygame.K_LEFT]: self.xloc -= 5
-            if pressed[pygame.K_RIGHT]: self.xloc  += 5
+            if pressed[pygame.K_UP] and self.yloc >= 0: self.yloc -= 5
+            if pressed[pygame.K_DOWN] and self.yloc <= (height - self.height): self.yloc += 5
+            if pressed[pygame.K_LEFT] and self.xloc >= 0: self.xloc -= 5
+            if pressed[pygame.K_RIGHT] and self.xloc <= (width - self.width): self.xloc += 5
     
     all_blocks = Create_blocks()
     all_blocks.spawn(number_of_blocks)
@@ -85,17 +85,18 @@ def main():
         # Game logic
         
         hero.move()
-        a = []
+        block_locations = []
+        hero_location = hero.rect
+        collide = False
         for i in range(number_of_blocks):
             all_blocks.blocks_array[i].make_and_move()
-            a.append(all_blocks.blocks_array[i].rect)
-            b = hero.rect
-            for i in range(len(a)):
-                if(a[i].colliderect(b)):
-                    color = (255, 100, 0)
-                else: 
-                    color = (97, 159, 182)
-        
+            block_locations.append(all_blocks.blocks_array[i].rect)
+            if(block_locations[i].colliderect(hero_location)):
+                collide = True
+        if collide == True:
+            color = (255, 100, 0)
+        if collide == False:
+            color = (97, 159, 182)
         
         pygame.display.update()
         clock.tick(60)

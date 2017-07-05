@@ -1,0 +1,25 @@
+body {
+  background-color:  #191919;
+  font-family: "Oswald", sans-serif;
+  color: #FFFFFF;
+  text-align: center;
+
+}
+
+p{
+  font-size: 150%
+}
+h1 {
+  margin-top: 60px;
+  font-size: 300%;
+  color: #DFE2DB;
+/*   text-align: center; */
+}
+.top-quote{
+  margin: 40px;
+  font-size: 140%;
+/*   text-align: center; */
+}
+hr {
+   border-color: #FFF056;
+}
