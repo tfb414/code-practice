@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://s.codepen.io/boomerang/iFrameKey-ca6ebce4-ec17-c016-a32a-5ded380f6f80/index.html -->
+<html class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js"></script><script src="./events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js"></script><script src="./css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js"></script><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico"><link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111"><link rel="canonical" href="https://codepen.io/tfb414/pen/KqqYrp">
+
+<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<style class="cp-pen-styles">body {
+  background-color:  #191919;
+  font-family: "Oswald", sans-serif;
+  color: #FFFFFF;
+  text-align: center;
+
+}
+
+p{
+  font-size: 150%
+}
+h1 {
+  margin-top: 60px;
+  font-size: 300%;
+  color: #DFE2DB;
+/*   text-align: center; */
+}
+.top-quote{
+  margin: 40px;
+  font-size: 140%;
+/*   text-align: center; */
+}
+hr {
+   border-color: #FFF056;
+}
+
+.message{
+  font-size: 200%
+}</style></head><body>
+<script>
+  $(document).ready(function() {
+    $("#getMessage").on("click", function(){
+      // Only change code below this line.
+      var derp = "here is the text"
+      $(".message").text(derp);
+      
+    });
+  });
+</script>
+
+
+<link href="./css(1)" rel="stylesheet">
+
+
+  <title>Random Quote Generator</title>
+
+<div class="container-fluid">
+<h1>Random Quote Generator</h1>
+  <hr>
+
+
+  <p></p><div class="top-quote">
+    Derp derp derp derp derp derp derp. 
+  find out how to do "-tim" down below it
+  </div><p></p>
+  <p>Click below for a new quote!</p><p>
+  </p><div class="row text-center">
+    <div class="col-xs-12"> 
+      <button id="getMessage" class="btn btn-default">New Quote</button>
+    </div>
+  </div>
+  <div class="message"><p>derp</p></div>
+
+</div>
+
+
+
+</body></html>

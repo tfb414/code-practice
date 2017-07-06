@@ -1,0 +1,64 @@
+/**{
+    border: 1px solid red;
+    
+}*/
+
+
+
+body {
+    background-color:  #3a3535;
+    font-family: "Oswald", sans-serif;
+    color: #DFE2DB;
+    text-align: center;
+}
+
+nav li {
+	display:inline;
+    color: #3a3535;
+	margin:10px;
+    font-size: 1.2em;
+}
+
+.top-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF056;
+    height: 50px;
+    width: 100%;
+}
+
+header {
+    padding: 0px;
+    margin: 0px;
+}
+
+footer {                                
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+
+    color: white;
+    background-color: #202020;
+    font-size: 12px; 
+}
+
+h1{
+    text-align: center;
+    margin: 10px;;
+    font-size: 3em;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+hr {
+    margin-top: 5px;
+    border-color: #FFF056;
+}
+
+
+
+
+
