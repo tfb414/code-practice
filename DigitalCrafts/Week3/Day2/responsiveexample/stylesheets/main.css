@@ -1,0 +1,185 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+  max-width: 1000px;
+  justify-content: center;
+  margin: 0 auto;
+  border: 5px solid blue;
+  font-family: "Oswald", sans-serif;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+/*
+
+Default styles, loaded regardless of media queries.
+These should be developed first for small (phone-sized) screens.
+*/
+
+/*.main-content{
+  
+}*/
+
+footer{
+  border: 5px solid blue;
+}
+
+nav {
+  display: none;
+}
+.top-level{
+  padding: 0;
+}
+.p-container{
+  display: inline-flex;
+  flex-direction: column;
+  /*border: 2px solid red;*/
+  justify-content: space-between;
+  width: 100%;
+  /*padding: 5px;*/
+  margin: 5px auto;
+  padding: 5px auto;
+}
+.section{
+  padding: 0;
+  margin: 5px;
+  justify-content: center;
+}
+.p-image{
+  width:100%;
+  text-align:center;
+}
+
+h1 {
+  font-size: 44px;
+  margin: auto;
+  text-align: center;
+  /*justify-content: center;*/
+}
+
+h2 {
+  margin: auto;
+  text-align: center;
+}
+
+.flex-image {
+  /*display: inline-flex;*/
+  width: 100%;
+}
+
+.p-content{
+  /*margin: auto;*/
+  padding-bottom: 30px
+}
+
+.cover-image {
+  /* Image URLs are relative to the CSS file! */
+  background-image: url(../images/rainer_kg9uf1_c_scale,w_426.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 5px;
+  width: 100%;
+  height: 200px;
+  margin: auto;
+  
+  /*border: 5px solid purple;*/
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+
+  .p-container{
+    justify-content: center;
+  }
+  .top-level{
+    
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .section{
+    width: 70%;
+    align-content: center;
+  }
+  .section-quarter{
+    width: 30%;
+  }
+  nav {
+    color: red;
+    font-size: 1.5rem;
+  }
+  .cover-image {
+    background-image: url(../images/rainer_kg9uf1_c_scale,w_727.jpg);
+    /*width: 760px;*/
+    width: 100%;
+    height: 500px;
+    
+    /*border: 3px solid blue;*/
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+  }
+  .derp{
+    align-content: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+
+  h1, h2 {
+    padding: 20px;
+    
+  }
+  nav {
+    color: red;
+    font-size: 1.5rem;
+  }
+  .cover-image {
+    
+    background-image: url(../images/rainer_kg9uf1_c_scale,w_1180.jpg);
+    width:100%;
+    height: 550px;
+    /*border: 3px solid red;*/
+  }
+  .section{
+    width: 100%;
+    margin: auto;
+  }
+  .top-level{
+    display: block;
+    
+  }
+  .p-container{
+  display: flex;
+  /*border: 2px solid red;*/
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  /*padding: 5px;*/
+  margin: 5px auto;
+  padding: 0px;
+  
+
+  
+  }
+
+  .p-image{
+    width:33%;
+  }
+
+  .container{
+    display: block;
+  }
+  .flex-image {
+    /*display: inline-flex;*/
+    width: 100%;
+  }
+}

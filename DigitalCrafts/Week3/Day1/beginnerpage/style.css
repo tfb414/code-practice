@@ -15,7 +15,7 @@ body {
 
 }
 .sizing{
-    max-width: 1200px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -37,6 +37,9 @@ nav li {
     margin: 10px;
 }
 
+derp{
+    background-color: green;
+}
 header {
     padding: 0px;
     margin: 0px;
@@ -70,7 +73,8 @@ hr {
 .hr-with-text{
     width: auto;
     padding-top: 0;
-    margin: 0 10px 0 10px;
+    margin-top: 0;
+    
 }
 
 .column-area{
@@ -96,10 +100,10 @@ hr {
     text-align: left;
     padding-bottom: 0px;
     margin-bottom: 0;
-    margin-left: 10px;
+    margin-left: 2px;
     font-size: 2em;
 }
-.image-background{
+/*.image-background{
   background: 
     linear-gradient(
       rgba(0, 0, 0, 0.3),
@@ -110,22 +114,42 @@ hr {
   margin: auto;
   height: 270px;
   width: 760px;
-}
+}*/
 .img-responsive{
     margin: auto;
 }
 .text-on-photo{
     position: absolute; 
-    top: 200px; 
+    top: 250px; 
     left: 0; 
     width: 100%;
     size: 2em;
+    /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
 }
 h2 span { 
    color: white; 
-   font: bold 24px/45px Helvetica, Sans-Serif; 
+   font: bold 30px/45px Helvetica, Sans-Serif; 
    letter-spacing: -1px;  
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.7);
-   padding: 10px; 
+   padding: 10px;
+   border-radius: 5px;
+}
+
+.derp{
+    border: 1px solid red;
+}
+
+.box-img{
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    box-sizing: border-box;
+    
+    
+}
+row{
+    max-width: 1000px;
 }

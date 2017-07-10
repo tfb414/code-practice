@@ -1,0 +1,53 @@
+html { box-sizing: border-box; } 
+ *, *:before, *:after { box-sizing: inherit; }
+
+body {
+    font-family: 'Roboto Slab', serif;
+    color: Black;
+    /*padding-bottom: 30px;*/
+
+}
+
+
+.nav-bar{
+    background-color: grey;
+    height: 80px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-ul {
+	display:inline-flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 100%;
+    color: #3a3535;
+    font-size: 1.2em;
+    padding: 0;
+    list-style: none;
+    height: 80px;
+}
+.nav-a{  
+    display:flex;
+    justify-content: center;
+    text-decoration: none;
+    width:100%;
+}  
+.nav-li{
+    display: flex;
+    align-items: center;
+}
+.about{
+    background: #1352A2
+}
+
+@media screen and (min-width: 320px) {
+    .about {
+        height: 480px;
+        border: 2px solid red;
+    }
+
+}
+
+/*make the a link occupy the entire space of th4e container*/
