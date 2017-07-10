@@ -1,0 +1,9 @@
+h1{
+    border: 1px solid red;
+}
+
+@media (min-width: 600px) {
+    h1{
+        border: 5px dotted blue;
+    }
+}
