@@ -2,7 +2,7 @@
 html {
   box-sizing: border-box;
   max-width: 1000px;
-  justify-content: center;
+  /*justify-content: center;*/
   margin: 0 auto;
   font-family: "Oswald", sans-serif;
   font-size: 18px;
@@ -66,9 +66,10 @@ h2 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 5px;
-  width: 100%;
-  height: 100%;
+  padding: 25% 0 25% 0;
+  /*Width and height were not performing the way that I thought that it would but we found that the above code about padding was able to solve the problem*/
+  /*width: 100%;*/
+  /*height: 100%;*/
   margin: auto;
 }
 footer{
@@ -112,7 +113,7 @@ footer{
     height: 100%;
   }
 }
-/*
+
 @media screen and (min-width: 1024px) {
   h1, h2 {
     padding: 20px;
@@ -130,6 +131,10 @@ footer{
   }
   .top-level{
     display: block;
+    height: auto;
+  }
+  .section-quarter {
+    overflow-y: unset;
   }
   .p-container{
   display: flex;
@@ -147,4 +152,4 @@ footer{
   .container{
     display: block;
   }
-}*/
+}
