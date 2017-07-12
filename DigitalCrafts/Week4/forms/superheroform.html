@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,19 +9,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="scripts.js"></script>
+    
     <link rel="stylesheet" href="main.css">
     <title>Super Hero Survey</title>
 </head>
 <body>
 
-         
-
-
     <div class="top-level-form">
         <div class="survey-box">
             <h1>Super Hero Survey</h1>
             <div class="level-two-form">
+                <!-- <form action="http://localhost:5000" method="POST" class="wider-form"> -->
                 <form action="http://localhost:5000" method="POST" class="wider-form">
                     <div class="form-group">
                         <label>Name:</label> 
@@ -30,27 +28,69 @@
                     <div class="form-group">
                         <label>Age:     </label>
                         <input type="text" name="age" value="" id="ageID" class="form-control">
+                        
                     </div>
                     <div class="form-group">
                         <label>Super Power:</label>
                         <input type="text" name="super-power" value="" id="super-powerID" class="form-control">
                     </div>
-                    
-                    <input type="reset" value="Reset">
-                    <!--<input type="submit">-->
+                    <div class="form-group">
+                        <label for="sel1">Shape: </label>
+                        <select class="form-control" id="shape">
+                            <option>None</option>
+                            <option>Rectangle</option>
+                            <option>Triangle</option>
+                            <option>Circle</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Color of shape: </label>
+                        <select class="form-control" id="color">
+                            <option>Black</option>
+                            <option>Blue</option>
+                            <option>Red</option>
+                            <option>Green</option>
+                        </select>
+                    </div>
+                
+                <button type="button" id="getData">Submit</button>   
+                <input type="reset" value="Reset">
                 </form>
             </div>
-            <button id="getData">Submit</button> 
+            
             <br>
-            <div><span>Name: </span><span id="return-name"></span></div>
-            Age: <div id="return-age"></div>
-            Super-Power: <div id="return-super-power"></div>
+            
+        </div>
+        <div class="survey-box">
+            <h1>Survey Results</h1>
+            <div class="level-two-form justify-left">
+                <dl class="dl-horizontal">
+                    <div><dt>Name:</dt> <dd><span id="return-name"></span></dd></div>
+                </dl>
+            </div>
+            <div class="level-two-form justify-left">
+                <dl class = "dl-horizontal">
+                    <div><dt>Age:</dt> <dd><span id="return-age"></span></dd></div>
+                </dl>
+            </div>
+            <div class="level-two-form justify-left">
+                <dl class = "dl-horizontal">
+                    <div><dt>Super-Power:</dt><dd>  <span id="return-super-power"></span></dd></div>
+                </dl>            
+            </div>  
+                 
+            
+                
+            <div class="level-two-form">
+                <canvas id="canvas" style="border:1px solid #000000;">
+                <div id="return-shape"></div>
+            </div>
         </div>
         
 
     </div>
 
-
+<script src="scripts.js"></script>
 
 </body>
 </html>

@@ -1,8 +1,4 @@
 
-
-*{
-    /*border: 5px solid red;*/
-}
 html{
     box-sizing: border-box;
     margin: 5px;
@@ -11,6 +7,7 @@ html{
 h1 {
 	margin-top: 5px;
 	margin-bottom: 10px;
+	text-align: center;
 }
 body{
 
@@ -19,13 +16,16 @@ body{
 .top-level-form{
     display:flex;
 	justify-content: center;
-	/*margin: 5px;*/
+	flex-direction: column;
+	
 
 	
 }
-.survey-box{
+	.survey-box{
 	background-color: green;
 	padding: 15px;
+	margin: 5px;
+
 }
 .level-two-form{
     display: flex;
@@ -33,6 +33,40 @@ body{
 	align-content: center;
 }
 
+.justify-left, .dl-horizontal, dt {
+	text-align: left; 
+	justify-content: left;
+}
+
 .wider-form{
 	width: 90%;
+}
+
+canvas{
+	width: 90%;
+}
+
+@media screen and (min-width: 768px) {
+	.survey-box{
+		width: 50%
+	}
+	.top-level-form{
+		flex-direction: row;
+	}
+
+	.justify-left, .dl-horizontal, dt {
+	text-align: left; 
+	justify-content: left;
+}
+}
+
+
+@media screen and (min-width: 1024px) {
+	.survey-box{
+		width: 35%
+	}
+	.justify-left, .dl-horizontal, dt {
+	text-align: left; 
+	justify-content: left;
+	}
 }
