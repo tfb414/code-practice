@@ -12,7 +12,7 @@ $(document).ready(function() {
         var randomNumber = Math.floor(Math.random() * 3);
         // Only change code below this line.
         $(".message").text(quotes[randomNumber]);
-        console.log(quot);
+        console.log(quotes);
     });
     
     
