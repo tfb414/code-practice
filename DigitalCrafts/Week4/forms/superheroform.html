@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <title>Super Hero Survey</title>
+</head>
+<body>
+
+         
+
+
+    <div class="top-level-form">
+        <div class="survey-box">
+            <h1>Super Hero Survey</h1>
+            <div class="level-two-form">
+                <form action="http://localhost:5000" method="POST" class="wider-form">
+                    <div class="form-group">
+                        <label>Name:</label> 
+                        <input type="text" name="name" value="" id="nameID" class="form-control"> 
+                    </div>
+                    <div class="form-group">
+                        <label>Age:     </label>
+                        <input type="text" name="age" value="" id="ageID" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Super Power:</label>
+                        <input type="text" name="super-power" value="" id="super-powerID" class="form-control">
+                    </div>
+                    
+                    <input type="reset" value="Reset">
+                    <!--<input type="submit">-->
+                </form>
+            </div>
+            <button id="getData">Submit</button> 
+            <br>
+            <div><span>Name: </span><span id="return-name"></span></div>
+            Age: <div id="return-age"></div>
+            Super-Power: <div id="return-super-power"></div>
+        </div>
+        
+
+    </div>
+
+
+
+</body>
+</html>

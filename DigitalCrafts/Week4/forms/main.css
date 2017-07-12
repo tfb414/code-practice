@@ -1,0 +1,38 @@
+
+
+*{
+    /*border: 5px solid red;*/
+}
+html{
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+h1 {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+body{
+
+}
+
+.top-level-form{
+    display:flex;
+	justify-content: center;
+	/*margin: 5px;*/
+
+	
+}
+.survey-box{
+	background-color: green;
+	padding: 15px;
+}
+.level-two-form{
+    display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+.wider-form{
+	width: 90%;
+}
