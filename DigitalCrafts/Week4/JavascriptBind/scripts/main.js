@@ -40,3 +40,5 @@ person3.speak = function() {
 }
 
 console.log(person3.speak.bind(person2)()) // sally
+
+
