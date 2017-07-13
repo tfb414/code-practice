@@ -25,21 +25,29 @@
 // var tim = function()
 
 /*************************************/
-let storage = [];
-(function() {
-  for (var i = 0; i < 10; i++) {
-    storage.push(i)
+// let vs var in block scoping
+/*************************************/
+let storage = {};
+for (var i = 0; i < 5; i++) {
+  storage['blah' + i ] = function () {
+    console.log(i)
   }
-  console.log(storage);
-  console.log(i);
-}());
+}
+console.log(storage['blah0']()) // 5
+console.log(storage['blah1']()) // 5
+console.log(storage['blah2']()) // 5
+console.log(storage['blah3']()) // 5
+console.log(storage['blah4']()) // 5
 
 /*************************************/
-let storage2 = [];
-(function() {
-  for (let i = 0; i < 10; i++) {
-    storage2.push(i)
+let storage2 = {}
+for (let i = 0; i < 10; i++) {
+  storage2['blah2' + i ] = function () {
+    console.log(i)
   }
-  console.log(storage2);
-//   console.log(i);
-}());
+}
+console.log(storage2['blah20']()) // 0
+console.log(storage2['blah21']()) // 1
+console.log(storage2['blah22']()) // 2
+console.log(storage2['blah23']()) // 3
+console.log(storage2['blah24']()) // 4
