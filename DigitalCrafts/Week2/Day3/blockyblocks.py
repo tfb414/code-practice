@@ -6,26 +6,33 @@ import random
 
 
 def main():
-    width = 512
-    height = 480
     color = (97, 159, 182)
     wall_color = (255,255,0)
     number_of_blocks = 1
     score_count = 0
 
+
+
+    class Game_world(object):
+        def __init__(self):
+            self.width = 512
+            self.height = 480
+        
+        
+
+    game_world = Game_world()
+    print game_world.width
     pygame.init()
     myfont = pygame.font.SysFont("monospace", 30)
-    screen = pygame.display.set_mode((width, height))
+    screen = pygame.display.set_mode((game_world.width, game_world.height))
     pygame.display.set_caption('My Game')
     clock = pygame.time.Clock()
-
-
 
     class Block(pygame.sprite.Sprite):
         def __init__(self):
             pygame.sprite.Sprite.__init__(self)
-            self.xloc = width
-            self.yloc = random.randint(10, height)
+            self.xloc = game_world.width
+            self.yloc = random.randint(10, game_world.height)
             self.speed = random.randint(1, 10)
             self.rect = pygame.Rect(self.xloc, self.yloc, 30, 30)
 
@@ -39,8 +46,8 @@ def main():
             return self.xloc < -30
 
         def reset(self):
-            self.xloc = width
-            self.yloc = random.randint(10, height)
+            self.xloc = game_world.width
+            self.yloc = random.randint(10, game_world.height)
             self.speed = random.randint(1, 5)
                     
     class Create_blocks(object):
@@ -51,8 +58,6 @@ def main():
             for i in range(number_of_blocks):
                 self.blocks_array.append(Block())
                 
-            
-    
     class Hero(pygame.sprite.Sprite):
         def __init__(self):
             pygame.sprite.Sprite.__init__(self)
@@ -77,7 +82,6 @@ def main():
         collision = False
         for i in range(number_of_blocks):
             block_locations.append(all_blocks.blocks_array[i].rect)
-            print i
             if(block_locations[i].colliderect(hero.rect)):
                 collision = True
         return collision
@@ -99,10 +103,11 @@ def main():
         screen.blit(score, (200, 15))
         return score_count
 
-    def difficulty(score_count, all_blocks):
+    def difficulty(score_count, all_blocks, number_of_blocks):
         if (int(score_count) % 100 == 0):
             all_blocks.spawn(1)
-            return all_blocks
+            number_of_blocks = number_of_blocks + 1
+        return number_of_blocks
 
     
     all_blocks = Create_blocks()
@@ -119,15 +124,11 @@ def main():
         screen.fill((50,50,50))
 
         hero.move()
-        difficulty(score_count, all_blocks)
+        number_of_blocks = difficulty(score_count, all_blocks, number_of_blocks)
         collision = collision_detection(number_of_blocks, all_blocks)
-        print collision
-        color = has_collided(collision)
+        stop_game = collision
         block_mover(number_of_blocks, all_blocks)
         score_count = show_score(score_count)
-
-        # difficulty(score_count)
-        
         
         
         
@@ -138,7 +139,9 @@ def main():
 
 if __name__ == '__main__':
     main()
-
+# ^ move everything into a game_world class then have the while loop and my setup inside of that then you need to change the above code
+# game world methods should operate on things that they recieve game would pass in difficulty level, or number of blocks etc. 
+# game world is it's own thing, it's in init I have self.all_blocks it'll be initialized there and you can make changes without haveing to pass down the paramaters
 
 # function for moving, color, and collision detection
 # Collision detection not working for any but the first block
