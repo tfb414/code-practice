@@ -11,22 +11,18 @@ def main():
     number_of_blocks = 1
     score_count = 0
 
-
-
     class Game_world(object):
         def __init__(self):
             self.width = 512
             self.height = 480
+            self.screen = pygame.display.set_mode((self.width, self.height))
+            self.font = pygame.font.SysFont("monospace", 30)
+            self.game_setup = pygame.display.set_caption('BlockyBlocks')
+            self.clock = pygame.time.Clock()
         
         
-
-    game_world = Game_world()
-    print game_world.width
     pygame.init()
-    myfont = pygame.font.SysFont("monospace", 30)
-    screen = pygame.display.set_mode((game_world.width, game_world.height))
-    pygame.display.set_caption('My Game')
-    clock = pygame.time.Clock()
+    game_world = Game_world()
 
     class Block(pygame.sprite.Sprite):
         def __init__(self):
@@ -38,7 +34,7 @@ def main():
 
         def make_and_move(self):
             self.rect = pygame.Rect(self.xloc, self.yloc, 30, 30)
-            pygame.draw.rect(screen, wall_color, pygame.Rect(self.rect))
+            pygame.draw.rect(game_world.screen, wall_color, pygame.Rect(self.rect))
             self.xloc -= self.speed
             if self.is_too_far():
                 self.reset()
@@ -66,16 +62,16 @@ def main():
             self.xloc = 100
             self.yloc = 100
             self.rect = pygame.Rect(self.xloc, self.yloc,self.width, self.height)
-            pygame.draw.rect(screen, color, pygame.Rect(self.rect))
+            pygame.draw.rect(game_world.screen, color, pygame.Rect(self.rect))
         
         def move(self):
             self.rect = pygame.Rect(self.xloc, self.yloc,self.width, self.height)
-            pygame.draw.rect(screen, color, pygame.Rect(self.rect))
+            pygame.draw.rect(game_world.screen, color, pygame.Rect(self.rect))
             pressed = pygame.key.get_pressed()
             if pressed[pygame.K_UP] and self.yloc >= 0: self.yloc -= 5
-            if pressed[pygame.K_DOWN] and self.yloc <= (height - self.height): self.yloc += 5
+            if pressed[pygame.K_DOWN] and self.yloc <= (game_world.height - self.height): self.yloc += 5
             if pressed[pygame.K_LEFT] and self.xloc >= 0: self.xloc -= 5
-            if pressed[pygame.K_RIGHT] and self.xloc <= (width - self.width): self.xloc += 5
+            if pressed[pygame.K_RIGHT] and self.xloc <= (game_world.width - self.width): self.xloc += 5
     
     def collision_detection(number_of_blocks, all_blocks):
         block_locations = []
@@ -99,8 +95,8 @@ def main():
 
     def show_score(score_count):
         score_count = str(int(score_count) + 1)
-        score = myfont.render(score_count, 1, (255,0,0))
-        screen.blit(score, (200, 15))
+        score = game_world.font.render(score_count, 1, (255,0,0))
+        game_world.screen.blit(score, (200, 15))
         return score_count
 
     def difficulty(score_count, all_blocks, number_of_blocks):
@@ -121,7 +117,7 @@ def main():
             if event.type == pygame.QUIT:
                 stop_game = True
 
-        screen.fill((50,50,50))
+        game_world.screen.fill((50,50,50))
 
         hero.move()
         number_of_blocks = difficulty(score_count, all_blocks, number_of_blocks)
