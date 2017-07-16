@@ -69,8 +69,12 @@ def main():
                 collision = game_world.collision_detection(game_world.number_of_blocks, array_of_blocks)
                 game_world.quit = collision
                 game_world.block_mover(game_world.number_of_blocks, array_of_blocks)
+
+            **********
                 game_world.score_count = game_world.show_score(game_world.score_count)
                 menu = game_world.font.render("derp", 1, (255,0,0))
+            **********
+
                 game_world.screen.blit(menu, (200, 100))
         
                 pygame.display.update()
