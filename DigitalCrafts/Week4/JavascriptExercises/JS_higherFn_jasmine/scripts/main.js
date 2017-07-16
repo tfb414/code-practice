@@ -2,23 +2,46 @@
 function isPositive(n){
     return n > 0;
 }
+function returnIsPositive(array){
+    return array.filter(isPositive);
+}
+
 function isEven(n){
     return n % 2 === 0;
+}
+function returnIsEven(array){
+    return array.filter(isEven);
 }
 function squareIt(n){
     return n * n;
 }
-function coolCity(obj){
+function returnSquareIt(array){
+    return array.map(squareIt);
+}
+function isCoolerThan(obj){
     return obj.temperature < 70;
+}
+function returnCoolCities(city){
+    return city.filter(isCoolerThan);
 }
 function returnCityName(obj){
     return obj.name;
 }
+// function returnCoolCityName(cities){
+//     return cities.filter(returnCoolCities).map(returnCityName);
+// }
+
 function printGreeting(person){
     return ("hello " + person);
 }
+function returnGreetings(fn){
+    return fn.map(printGreeting);
+}
 function productMaker(a, b){
     return a * b;
+}
+function returnProduct(data){
+    return data.reduce(productMaker);
 }
 function returnTotal(array){
     return array.map(returnPrice).reduce((a,b)=> a + b);
@@ -56,7 +79,7 @@ if(typeof module !== "undefined"){
         isPositive:isPositive,
         isEven:isEven,
         squareIt:squareIt,
-        coolCity: coolCity,
+        isCoolerThan: isCoolerThan,
         returnCityName: returnCityName,
         printGreeting: printGreeting,
         productMaker: productMaker,
@@ -64,6 +87,13 @@ if(typeof module !== "undefined"){
         addSep:addSep,
         addSepV2:addSepV2,
         returnTotal: returnTotal,
+        returnProduct: returnProduct,
+        returnGreetings: returnGreetings,
+        returnCoolCities: returnCoolCities,
+        // returnCoolCityName: returnCoolCityName,
+        returnIsPositive: returnIsPositive,
+        returnIsEven: returnIsEven,
+        returnSquareIt: returnSquareIt,
     }
 }
 

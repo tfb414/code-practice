@@ -5,7 +5,8 @@ describe("testing positives", function() {
   var nums = [1,2,3,4,5,-6,-7,-8];
 
   it("should return 5 positive values when given [1,2,3,4,5,-6,-7,-8]", function() {
-    var positive = nums.filter(main.isPositive);
+  
+    var positive = main.returnIsPositive(nums)
     expect(positive).toEqual([1,2,3,4,5]);
   });
 });
@@ -14,8 +15,8 @@ describe("testing even numbers", function() {
   var nums = [1,2,3,4,5,-6,-7,-8];
 
   it("should return even values when given [1,2,3,4,5,-6,-7,-8]", function() {
-    var even = nums.filter(main.isEven);
-
+    // var even = nums.filter(main.isEven);
+    var even = main.returnIsEven(nums)
     expect(even).toEqual([2,4,-6, -8]);
   });
 });
@@ -24,7 +25,8 @@ describe("Squaring numbers", function() {
   var nums = [1,2,3,4,5,-6,-7,-8];
 
   it("should square all numbers in an array when given [1,2,3,4,5,-6,-7,-8]", function() {
-    var squared = nums.map(main.squareIt);
+    // var squared = nums.map(main.squareIt);
+    var squared = main.returnSquareIt(nums);
     expect(squared).toEqual([1, 4, 9, 16, 25, 36, 49, 64]);
   });
 });
@@ -38,9 +40,9 @@ describe("testing cities whose temp is cooler than 70 degrees", function() {
 ];
 
   it("should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
-    var coolCities = cities.filter(main.coolCity);
+    var coolerThanSeventy = main.returnCoolCities(cities);
 
-    expect(coolCities).toEqual([
+    expect(coolerThanSeventy).toEqual([
       { name: 'Los Angeles', temperature: 60.0},
       { name: 'Atlanta', temperature: 52.0 },
       { name: 'Detroit', temperature: 48.0 }
@@ -57,8 +59,8 @@ describe("return a list of just the names of the cities who's temperature is les
 ];
 
   it("should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
-    // console.log(cities.filter(main.coolCity).map(main.returnCityName));
-    var finalCityDisplay = cities.filter(main.coolCity).map(main.returnCityName);
+    var finalCityDisplay = cities.filter(main.isCoolerThan).map(main.returnCityName);
+    // var finalCityDisplay = main.returnCoolCityName(cities)
 
     expect(finalCityDisplay).toEqual(['Los Angeles', 'Atlanta','Detroit']);
   });
@@ -69,7 +71,7 @@ describe("return a list of just the names of the cities who's temperature is les
 
   it("should print out 'Good Job, {name}' for each persons's name" , function() {
     
-    var greetThem = people.map(main.printGreeting);
+    var greetThem = main.returnGreetings(people);
 
     expect(greetThem).toEqual(["hello Dom", "hello Lyn", "hello Tim"]);
   });
@@ -80,7 +82,7 @@ describe("product maker", function() {
 
   it("should return an array of numbers and returns a product of those numbers" , function() {
     
-    var finalProduct = arrayOfNumbers.reduce(main.productMaker);
+    var finalProduct = main.returnProduct(arrayOfNumbers)
 
     expect(finalProduct).toEqual(120);
   });
