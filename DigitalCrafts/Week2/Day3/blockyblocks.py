@@ -19,7 +19,6 @@ def main():
             self.number_of_blocks = 1
             self.score_count = 0
             self.quit = False
-            
 
         def block_mover(self, number_of_blocks, array_of_blocks):
             for block in array_of_blocks.blocks_array:
@@ -51,11 +50,19 @@ def main():
                 number_of_blocks = number_of_blocks + 1
             return number_of_blocks
         
+        def menu(self):
+            menu = game_world.font.render("derp", 1, (255,0,0))
+            game_world.screen.blit(menu, (200, 100))
+            # return score_count
+
         def game_loop(self):
             while not game_world.quit:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         game_world.quit = True
+
+                
+
                 game_world.screen.fill((50,50,50))
                 hero.move()
                 game_world.number_of_blocks = game_world.difficulty(game_world.score_count, array_of_blocks, game_world.number_of_blocks)
@@ -63,7 +70,9 @@ def main():
                 game_world.quit = collision
                 game_world.block_mover(game_world.number_of_blocks, array_of_blocks)
                 game_world.score_count = game_world.show_score(game_world.score_count)
-                
+                menu = game_world.font.render("derp", 1, (255,0,0))
+                game_world.screen.blit(menu, (200, 100))
+        
                 pygame.display.update()
                 game_world.clock.tick(60)
         
@@ -122,7 +131,7 @@ def main():
     
     array_of_blocks = Create_blocks()
     array_of_blocks.spawn(game_world.number_of_blocks)
-    
+    # game_world.menu()
     hero = Hero()
     game_world.game_loop()
 
