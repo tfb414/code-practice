@@ -6,9 +6,9 @@ import random
 
 
 def main():
-    color = (97, 159, 182)
-    wall_color = (255,255,0)
-    number_of_blocks = 1
+    # color = (97, 159, 182)
+    # wall_color = (255,255,0)
+    # number_of_blocks = 1
     score_count = 0
 
     class Game_world(object):
@@ -19,6 +19,9 @@ def main():
             self.font = pygame.font.SysFont("monospace", 30)
             self.game_setup = pygame.display.set_caption('BlockyBlocks')
             self.clock = pygame.time.Clock()
+            self.color = (97, 159, 182)
+            self.wall_color = (255,255,0)
+            self.number_of_blocks = 1
         
         
     pygame.init()
@@ -34,7 +37,7 @@ def main():
 
         def make_and_move(self):
             self.rect = pygame.Rect(self.xloc, self.yloc, 30, 30)
-            pygame.draw.rect(game_world.screen, wall_color, pygame.Rect(self.rect))
+            pygame.draw.rect(game_world.screen, game_world.wall_color, pygame.Rect(self.rect))
             self.xloc -= self.speed
             if self.is_too_far():
                 self.reset()
@@ -62,11 +65,11 @@ def main():
             self.xloc = 100
             self.yloc = 100
             self.rect = pygame.Rect(self.xloc, self.yloc,self.width, self.height)
-            pygame.draw.rect(game_world.screen, color, pygame.Rect(self.rect))
+            pygame.draw.rect(game_world.screen, game_world.color, pygame.Rect(self.rect))
         
         def move(self):
             self.rect = pygame.Rect(self.xloc, self.yloc,self.width, self.height)
-            pygame.draw.rect(game_world.screen, color, pygame.Rect(self.rect))
+            pygame.draw.rect(game_world.screen, game_world.color, pygame.Rect(self.rect))
             pressed = pygame.key.get_pressed()
             if pressed[pygame.K_UP] and self.yloc >= 0: self.yloc -= 5
             if pressed[pygame.K_DOWN] and self.yloc <= (game_world.height - self.height): self.yloc += 5
@@ -88,10 +91,10 @@ def main():
         
     def has_collided(collision):
         if collision == True:
-            color = (255, 100, 0)
+            game_world.color = (255, 100, 0)
         if collision == False:
-            color = (97, 159, 182)
-        return color
+            game_world.color = (97, 159, 182)
+        return game_world.color
 
     def show_score(score_count):
         score_count = str(int(score_count) + 1)
@@ -107,7 +110,7 @@ def main():
 
     
     all_blocks = Create_blocks()
-    all_blocks.spawn(number_of_blocks)
+    all_blocks.spawn(game_world.number_of_blocks)
     hero = Hero()
     stop_game = False
     
@@ -120,16 +123,16 @@ def main():
         game_world.screen.fill((50,50,50))
 
         hero.move()
-        number_of_blocks = difficulty(score_count, all_blocks, number_of_blocks)
-        collision = collision_detection(number_of_blocks, all_blocks)
+        game_world.number_of_blocks = difficulty(score_count, all_blocks, game_world.number_of_blocks)
+        collision = collision_detection(game_world.number_of_blocks, all_blocks)
         stop_game = collision
-        block_mover(number_of_blocks, all_blocks)
+        block_mover(game_world.number_of_blocks, all_blocks)
         score_count = show_score(score_count)
         
         
         
         pygame.display.update()
-        clock.tick(60)
+        game_world.clock.tick(60)
 
     pygame.quit()
 
