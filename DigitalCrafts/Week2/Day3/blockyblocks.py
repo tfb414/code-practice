@@ -75,6 +75,8 @@ def main():
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         game_world.quit = True
+
+                        # if event.key==pygame.K_KP_ENTER
                 game_world.screen.fill((50,50,50))
                 hero.move()
                 game_world.number_of_blocks = game_world.difficulty(game_world.score_count, array_of_blocks, game_world.number_of_blocks)
