@@ -22,14 +22,16 @@ function isCoolerThan(obj){
     return obj.temperature < 70;
 }
 function returnCoolCities(city){
-    return city.filter(isCoolerThan);
+    // console.log(city.filter(isCoolerThan).map(returnCityName));
+    return city.filter(isCoolerThan).map(returnCityName);
+}
+
+function returnCoolCitiesObject(obj){
+    return obj.filter(isCoolerThan);
 }
 function returnCityName(obj){
     return obj.name;
 }
-// function returnCoolCityName(cities){
-//     return cities.filter(returnCoolCities).map(returnCityName);
-// }
 
 function printGreeting(person){
     return ("hello " + person);
@@ -90,10 +92,11 @@ if(typeof module !== "undefined"){
         returnProduct: returnProduct,
         returnGreetings: returnGreetings,
         returnCoolCities: returnCoolCities,
-        // returnCoolCityName: returnCoolCityName,
+        
         returnIsPositive: returnIsPositive,
         returnIsEven: returnIsEven,
         returnSquareIt: returnSquareIt,
+        returnCoolCitiesObject: returnCoolCitiesObject,
     }
 }
 

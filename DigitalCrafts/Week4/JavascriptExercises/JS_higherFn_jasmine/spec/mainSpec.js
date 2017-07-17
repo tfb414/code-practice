@@ -40,7 +40,7 @@ describe("testing cities whose temp is cooler than 70 degrees", function() {
 ];
 
   it("should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
-    var coolerThanSeventy = main.returnCoolCities(cities);
+    var coolerThanSeventy = main.returnCoolCitiesObject(cities);
 
     expect(coolerThanSeventy).toEqual([
       { name: 'Los Angeles', temperature: 60.0},
@@ -50,7 +50,7 @@ describe("testing cities whose temp is cooler than 70 degrees", function() {
   });
 });
 
-describe("return a list of just the names of the cities who's temperature is less than 0 degrees", function() {
+describe("derp return a list of just the names of the cities who's temperature is less than 0 degrees", function() {
   var cities = [
     { name: 'Los Angeles', temperature: 60.0},
     { name: 'Atlanta', temperature: 52.0 },
@@ -58,9 +58,9 @@ describe("return a list of just the names of the cities who's temperature is les
     { name: 'New York', temperature: 80.0 }
 ];
 
-  it("should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
-    var finalCityDisplay = cities.filter(main.isCoolerThan).map(main.returnCityName);
-    // var finalCityDisplay = main.returnCoolCityName(cities)
+  it("derp should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
+    // var finalCityDisplay = cities.filter(main.isCoolerThan).map(main.returnCityName);
+    var finalCityDisplay = main.returnCoolCities(cities)
 
     expect(finalCityDisplay).toEqual(['Los Angeles', 'Atlanta','Detroit']);
   });
