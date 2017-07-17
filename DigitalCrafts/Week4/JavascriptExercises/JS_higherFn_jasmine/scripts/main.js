@@ -35,9 +35,6 @@ function calculateTotal(runningTotal, currentElement){
 function calculateProduct(runningTotal, currentElement){
     return runningTotal * currentElement;
 }
-
-
-
 function isPositive(n){
     return n > 0;
 }
@@ -69,10 +66,6 @@ function get(propName){
         return obj[propName];
     }
 }
-
-var getTemp = get('temperature');
-
-
 function getName(obj){
     return obj.name;
 }
@@ -99,9 +92,6 @@ function formatPeeps(peepArray){
         return peep + '\n';
     })
 }
-
-//lots of solutions for the same thing. Pick one
-
 
 function printGreeting(person){
     return ("hello " + person);
@@ -140,8 +130,6 @@ function strJoin(strings, sep){
     }
 )}
 
-//use this?
-
 function getFirstLetter(word){
     firstLetter = word.split("");
     return firstLetter[0];
@@ -155,7 +143,7 @@ function concatStr(str, times){
     return times > 1 ? concatStr(str, times-1) + str : str;
 }
 
-//do this again with .reduce
+// do this again with reduce
 
 function createBox(width, height){
     return height > 1 ? createBox(3, height-1) + "\n" + concatStr("*", width)  : concatStr("*", width);
@@ -176,10 +164,6 @@ function objectSorter(fn){
         return arrayOfObjects.sort(fn);
     }
 }
-
-
-
-
 
 if(typeof module !== "undefined"){
     module.exports = {
@@ -208,7 +192,6 @@ if(typeof module !== "undefined"){
         makeReducerTotal: makeReducerTotal,
         makeReducerProduct: makeReducerProduct,
         calculateProduct: calculateProduct,
-        // coolCityName: coolCityName,
         calculateTotal: calculateTotal,
         
     }
