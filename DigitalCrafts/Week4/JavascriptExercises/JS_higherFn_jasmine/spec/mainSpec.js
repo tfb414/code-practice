@@ -96,11 +96,11 @@ describe("list total price", function() {
   { name: 'Tennis Balls', price: 9.00 }
 ];
 
-  it("should return the total price of all items in the shopping cart" , function() {
-    
-    var totalPrice = main.returnTotal(products);
-    expect(totalPrice).toEqual(96);
-  });
+    it("should return the total price of all items in the shopping cart" , function() {
+      
+      var totalPrice = main.returnTotal(products);
+      expect(totalPrice).toEqual(96);
+    });
 });
 
 describe("Joins together strings with the seperator between them without using .join", function() {
@@ -131,4 +131,53 @@ describe("Joins together strings with the seperator between them without using .
   });
 });
 
+describe("creates a function acronym that takes an array of words and returns the acronym for the words", function() {
+  var stuffToCombine = ['national', 'aeronautics', 'space', 'administration'];
+  var sep = "";
+  
 
+  it("should return the acronym NASA when given '['national', 'aeronautics', 'space', 'administration']'" , function() {
+    
+    var finalAcro = main.returnAcronym(stuffToCombine)
+
+    expect(finalAcro).toEqual("nasa");
+  });
+});
+
+describe("a function that takes two arguments. A string to multiply and the number of times", function() {
+  var str = "derp";
+  var times = 3;
+  
+
+  it("should return a concatenated str'" , function() {
+    
+    var finalString = main.concatStr("derp", 3);
+
+    expect(finalString).toEqual("derpderpderp");
+  });
+});
+
+describe("a function that takes two arguments and returns a box based on the width and height", function() {
+  var width = 3;
+  var height = 3;
+  
+
+  it("should return a box'" , function() {
+    
+    var box = main.createBox(width, height);
+
+    expect(box).toEqual("***\n***\n***");
+  });
+});
+
+describe("a function to sort an array", function() {
+  var people = ["Tim", "Nate", "Luke"];
+  
+
+  it("should sort [TIm, Nate, Luke] into [Luke, Nate, Tim]'" , function() {
+    
+    var alphaPeople = 
+
+    expect(alphaPeople).toEqual(['Luke', 'Nate', 'Tim']);
+  });
+});

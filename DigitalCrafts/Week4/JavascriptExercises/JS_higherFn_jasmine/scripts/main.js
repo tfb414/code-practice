@@ -22,7 +22,6 @@ function isCoolerThan(obj){
     return obj.temperature < 70;
 }
 function returnCoolCities(city){
-    // console.log(city.filter(isCoolerThan).map(getName));
     return city.filter(isCoolerThan).map(getName);
 }
 
@@ -47,9 +46,7 @@ function returnProduct(data){
 }
 function returnTotal(array){
     return array.map(returnPrice).reduce((a,b)=> a + b);
-
 }
-
 function returnPrice(obj){
     return obj.price
 }
@@ -72,7 +69,27 @@ function addSepV2(array, sep){
     }, "");
 }
 
+function getFirstLetter(word){
+    firstLetter = word.split("");
+    return firstLetter[0];
+}
 
+function returnAcronym(array){
+    return array.map(getFirstLetter).reduce((a,b)=> a + b);
+    //how can I add in addSepV2 here in one line?
+}
+
+function concatStr(str, times){
+    return times > 1 ? concatStr(str, times-1) + str : str;
+    //how can I write this but not have to put : str, also change it to times > 0
+}
+
+function createBox(width, height){
+    // return width * "*";
+    return height > 1 ? createBox(3, height-1) + "\n" + concatStr("*", width)  : concatStr("*", width);
+
+    
+}
 
 
 
@@ -97,6 +114,10 @@ if(typeof module !== "undefined"){
         returnIsEven: returnIsEven,
         returnSquareIt: returnSquareIt,
         returnCoolCitiesObject: returnCoolCitiesObject,
+        returnAcronym: returnAcronym,
+        concatStr: concatStr,
+        createBox: createBox,
+        
     }
 }
 
