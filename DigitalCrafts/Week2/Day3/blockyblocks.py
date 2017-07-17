@@ -11,7 +11,8 @@ def main():
             self.width = 512
             self.height = 480
             self.screen = pygame.display.set_mode((self.width, self.height))
-            self.font = pygame.font.SysFont("monospace", 30)
+            self.score_font = pygame.font.Font("/Users/timbrady/Documents/Development/Code-practice/DigitalCrafts/Week2/day3/fonts/LuckiestGuy.ttf", 15)
+            self.font = pygame.font.Font("/Users/timbrady/Documents/Development/Code-practice/DigitalCrafts/Week2/day3/fonts/LuckiestGuy.ttf", 55)
             self.game_setup = pygame.display.set_caption('BlockyBlocks')
             self.clock = pygame.time.Clock()
             self.color = (97, 159, 182)
@@ -19,6 +20,7 @@ def main():
             self.number_of_blocks = 1
             self.score_count = 1
             self.quit = False
+            
 
         def block_mover(self, number_of_blocks, array_of_blocks):
             for block in array_of_blocks.blocks_array:
@@ -41,12 +43,12 @@ def main():
         def show_score(self, score_count):
             score_count = str(int(score_count) + 1)
             score = game_world.font.render(score_count, 1, (255,0,0))
-            game_world.screen.blit(score, (200, 15))
+            score_rect = score.get_rect(center=(game_world.width/2, 40))
+            game_world.screen.blit(score, score_rect)
             return score_count
 
         def difficulty(self, score_count, array_of_blocks, number_of_blocks):
             if (int(score_count) % 100 == 0):
-                print score_count, (int(score_count) % 100 == 0)
                 array_of_blocks.spawn(1)
                 number_of_blocks = number_of_blocks + 1
             return number_of_blocks
@@ -63,8 +65,9 @@ def main():
                     if pressed[pygame.K_RETURN]: 
                         game_world.game_loop()  
                 game_world.screen.fill((50,50,50))
-                menu = game_world.font.render("derp", 1, (255,0,0))
-                game_world.screen.blit(menu, (200, 100))
+                menu = game_world.font.render("Blocky Blocks", 1, (255,0,0))
+                menu_rect = menu.get_rect(center=(game_world.width/2, 100))
+                game_world.screen.blit(menu,menu_rect)
                 game_world.block_mover(game_world.number_of_blocks, array_of_blocks)
                 pygame.display.update()
                 game_world.clock.tick(60)
