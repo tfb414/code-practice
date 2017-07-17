@@ -29,7 +29,7 @@ def main():
             collision = False
             for i in range(number_of_blocks):
                 block_locations.append(array_of_blocks.blocks_array[i].rect)
-                if(block_locations[i].colliderect(hero.rect)):
+                if(block_locations[i].colliderect(self.hero.rect)):
                     collision = True
             return collision
         # def has_collided(self, collision):
@@ -38,7 +38,7 @@ def main():
         #     if collision == False:
         #         game_world.color = (97, 159, 182)
         #     return game_world.color
-        def show_score(self, score_count, hide):
+        def show_score(self, score_count):
             score_count = str(int(score_count) + 1)
             score = game_world.font.render(score_count, 1, (255,0,0))
             game_world.screen.blit(score, (200, 15))
@@ -51,7 +51,7 @@ def main():
                 number_of_blocks = number_of_blocks + 1
             return number_of_blocks
         
-        def menu(self):
+        def run_menu(self):
             game_world.number_of_blocks = 10
             array_of_blocks = Create_blocks()
             array_of_blocks.spawn(game_world.number_of_blocks)
@@ -59,6 +59,9 @@ def main():
                 for event in pygame.event.get():
                     if event.type == pygame.quit:
                         game_world.quit = True
+                    pressed = pygame.key.get_pressed()
+                    if pressed[pygame.K_RETURN]: 
+                        game_world.game_loop()  
                 game_world.screen.fill((50,50,50))
                 menu = game_world.font.render("derp", 1, (255,0,0))
                 game_world.screen.blit(menu, (200, 100))
@@ -66,26 +69,22 @@ def main():
                 pygame.display.update()
                 game_world.clock.tick(60)
             
-            # return score_count
-
         def game_loop(self):
+            self.hero = Hero()
+            game_world.number_of_blocks = 1
             array_of_blocks = Create_blocks()
             array_of_blocks.spawn(game_world.number_of_blocks)
             while not game_world.quit:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         game_world.quit = True
-
-                        # if event.key==pygame.K_KP_ENTER
                 game_world.screen.fill((50,50,50))
-                hero.move()
+                self.hero.move()
                 game_world.number_of_blocks = game_world.difficulty(game_world.score_count, array_of_blocks, game_world.number_of_blocks)
                 game_world.score_count = game_world.show_score(game_world.score_count)
                 collision = game_world.collision_detection(game_world.number_of_blocks, array_of_blocks)
                 game_world.block_mover(game_world.number_of_blocks, array_of_blocks)
                 game_world.quit = collision
-
-        
                 pygame.display.update()
                 game_world.clock.tick(60)
         
@@ -143,8 +142,7 @@ def main():
             if pressed[pygame.K_RIGHT] and self.xloc <= (game_world.width - self.width): self.xloc += 5
     
    
-    game_world.menu()
-    # hero = Hero()
+    game_world.run_menu()
     # game_world.game_loop()
     pygame.quit()
 
