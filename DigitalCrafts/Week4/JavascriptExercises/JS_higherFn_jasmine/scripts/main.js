@@ -1,27 +1,44 @@
+function makeFilter(fn){
+    return function(array){
+        return array.filter(fn);
+    }
+}
+
+function makeMapper(fn){
+    return function(array){
+        return array.map(fn);
+    }
+}
+
+function makeSorter(fn){
+    return function(array){
+        return array.sort(fn);
+    }
+}
 
 function isPositive(n){
     return n > 0;
 }
-function returnIsPositive(array){
-    return array.filter(isPositive);
-}
+
+
+// derp = [1,2,3,4,-5,-6,-7];
+// var positive = makeFilter(isPositive);
+// console.log(positive(derp))
+//I haven't used this, but chris did
+
+
 
 function isEven(n){
     return n % 2 === 0;
 }
-function returnIsEven(array){
-    return array.filter(isEven);
-}
 function squareIt(n){
     return n * n;
-}
-function returnSquareIt(array){
-    return array.map(squareIt);
 }
 function isCoolerThan(obj){
     return obj.temperature < 70;
 }
 function returnCoolCities(city){
+    // return city.makeFilter(isCoolerThan).makeMapper(getName)
     return city.filter(isCoolerThan).map(getName);
 }
 
@@ -76,20 +93,35 @@ function getFirstLetter(word){
 
 function returnAcronym(array){
     return array.map(getFirstLetter).reduce((a,b)=> a + b);
-    //how can I add in addSepV2 here in one line?
 }
 
 function concatStr(str, times){
     return times > 1 ? concatStr(str, times-1) + str : str;
-    //how can I write this but not have to put : str, also change it to times > 0
 }
+
+//do this again with .reduce
 
 function createBox(width, height){
-    // return width * "*";
     return height > 1 ? createBox(3, height-1) + "\n" + concatStr("*", width)  : concatStr("*", width);
-
-    
 }
+function sortAlpha(array){
+    return array.sort();
+}
+function sortByLength(array){
+    return array.sort((a, b) => a.length > b.length);
+}
+
+function sortByPrice(arrayOfObjects){
+    return arrayOfObjects.price.sort((a, b) => a > b);
+}
+
+function objectSorter(fn){
+    return function (arrayOfObjects){
+        return arrayOfObjects.sort(fn);
+    }
+}
+
+
 
 
 
@@ -109,14 +141,17 @@ if(typeof module !== "undefined"){
         returnProduct: returnProduct,
         returnGreetings: returnGreetings,
         returnCoolCities: returnCoolCities,
-        
-        returnIsPositive: returnIsPositive,
-        returnIsEven: returnIsEven,
-        returnSquareIt: returnSquareIt,
         returnCoolCitiesObject: returnCoolCitiesObject,
         returnAcronym: returnAcronym,
         concatStr: concatStr,
         createBox: createBox,
+        sortAlpha: sortAlpha,
+        sortByLength: sortByLength,
+        objectSorter: objectSorter,
+        sortbyPrice: sortByPrice,
+        makeFilter: makeFilter,
+        makeMapper: makeMapper,
+        makeSorter: makeSorter,
         
     }
 }

@@ -6,8 +6,8 @@ describe("testing positives", function() {
 
   it("should return 5 positive values when given [1,2,3,4,5,-6,-7,-8]", function() {
   
-    var positive = main.returnIsPositive(nums)
-    expect(positive).toEqual([1,2,3,4,5]);
+    var positive = main.makeFilter(main.isPositive);
+    expect(positive(nums)).toEqual([1,2,3,4,5]);
   });
 });
 
@@ -16,8 +16,8 @@ describe("testing even numbers", function() {
 
   it("should return even values when given [1,2,3,4,5,-6,-7,-8]", function() {
     // var even = nums.filter(main.isEven);
-    var even = main.returnIsEven(nums)
-    expect(even).toEqual([2,4,-6, -8]);
+    var even = main.makeFilter(main.isEven);
+    expect(even(nums)).toEqual([2,4,-6, -8]);
   });
 });
 
@@ -26,8 +26,8 @@ describe("Squaring numbers", function() {
 
   it("should square all numbers in an array when given [1,2,3,4,5,-6,-7,-8]", function() {
     // var squared = nums.map(main.squareIt);
-    var squared = main.returnSquareIt(nums);
-    expect(squared).toEqual([1, 4, 9, 16, 25, 36, 49, 64]);
+    var squared = main.makeMapper(main.squareIt);
+    expect(squared(nums)).toEqual([1, 4, 9, 16, 25, 36, 49, 64]);
   });
 });
 
@@ -176,8 +176,64 @@ describe("a function to sort an array", function() {
 
   it("should sort [TIm, Nate, Luke] into [Luke, Nate, Tim]'" , function() {
     
-    var alphaPeople = 
+    var alphaPeople = main.sortAlpha(people);
 
     expect(alphaPeople).toEqual(['Luke', 'Nate', 'Tim']);
+  });
+});
+
+describe("a function to sort an array", function() {
+  var people = ["1234", "123", "12"];
+  
+
+  it("should sort [1234, 123, 12] into [12, 123, 1234]'" , function() {
+    
+    var lengthPeople = main.sortByLength(people);
+
+    expect(lengthPeople).toEqual(['12', '123', '1234']);
+  });
+});
+
+describe("a function to sort an array with an object inside of it", function() {
+  var products = [
+    { name: 'Basketball', price: 12.00 },
+    { name: 'Tennis Racquet', price: 66.00 },
+    { name: 'Tennis Balls', price: 9.00 },
+    { name: 'Tennis Balls', price: 9.00 }
+  ];
+  
+
+  it("should products by price'" , function() {
+    
+    var sortedProducts = main.objectSorter(main.sortByPrice);
+
+    expect(sortedProducts(products)).toEqual([
+      { name: 'Basketball', price: 12 }, 
+      { name: 'Tennis Racquet', price: 66 }, 
+      { name: 'Tennis Balls', price: 9 }, 
+      { name: 'Tennis Balls', price: 9 }
+    ]);
+  });
+});
+
+describe("a function to sort an array with an object inside of it", function() {
+  var products = [
+    { name: 'Basketball', price: 12.00 },
+    { name: 'Tennis Racquet', price: 66.00 },
+    { name: 'Tennis Balls', price: 9.00 },
+    { name: 'Tennis Balls', price: 9.00 }
+  ];
+  
+
+  it("should products by price'" , function() {
+    
+    var sortedProducts = main.objectSorter(main.sortByPrice);
+
+    expect(sortedProducts(products)).toEqual([
+      { name: 'Basketball', price: 12 }, 
+      { name: 'Tennis Racquet', price: 66 }, 
+      { name: 'Tennis Balls', price: 9 }, 
+      { name: 'Tennis Balls', price: 9 }
+    ]);
   });
 });
