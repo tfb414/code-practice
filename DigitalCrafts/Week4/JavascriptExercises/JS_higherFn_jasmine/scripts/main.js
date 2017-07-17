@@ -22,14 +22,14 @@ function isCoolerThan(obj){
     return obj.temperature < 70;
 }
 function returnCoolCities(city){
-    // console.log(city.filter(isCoolerThan).map(returnCityName));
-    return city.filter(isCoolerThan).map(returnCityName);
+    // console.log(city.filter(isCoolerThan).map(getName));
+    return city.filter(isCoolerThan).map(getName);
 }
 
 function returnCoolCitiesObject(obj){
     return obj.filter(isCoolerThan);
 }
-function returnCityName(obj){
+function getName(obj){
     return obj.name;
 }
 
@@ -82,7 +82,7 @@ if(typeof module !== "undefined"){
         isEven:isEven,
         squareIt:squareIt,
         isCoolerThan: isCoolerThan,
-        returnCityName: returnCityName,
+        getName: getName,
         printGreeting: printGreeting,
         productMaker: productMaker,
         returnPrice:returnPrice,

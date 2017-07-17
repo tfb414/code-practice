@@ -59,7 +59,7 @@ describe("derp return a list of just the names of the cities who's temperature i
 ];
 
   it("derp should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
-    // var finalCityDisplay = cities.filter(main.isCoolerThan).map(main.returnCityName);
+    
     var finalCityDisplay = main.returnCoolCities(cities)
 
     expect(finalCityDisplay).toEqual(['Los Angeles', 'Atlanta','Detroit']);
