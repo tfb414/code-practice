@@ -37,12 +37,12 @@ describe("testing cities whose temp is cooler than 70 degrees", function() {
     { name: 'Atlanta', temperature: 52.0 },
     { name: 'Detroit', temperature: 48.0 },
     { name: 'New York', temperature: 80.0 }
-];
+  ];
 
   it("should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
-    var coolerThanSeventy = main.returnCoolCitiesObject(cities);
+    var coolerThanSeventy = main.makeFilter(main.isCoolerThan);
 
-    expect(coolerThanSeventy).toEqual([
+    expect(coolerThanSeventy(cities)).toEqual([
       { name: 'Los Angeles', temperature: 60.0},
       { name: 'Atlanta', temperature: 52.0 },
       { name: 'Detroit', temperature: 48.0 }
@@ -56,7 +56,7 @@ describe("derp return a list of just the names of the cities who's temperature i
     { name: 'Atlanta', temperature: 52.0 },
     { name: 'Detroit', temperature: 48.0 },
     { name: 'New York', temperature: 80.0 }
-];
+  ];
 
   it("derp should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
     
@@ -66,7 +66,7 @@ describe("derp return a list of just the names of the cities who's temperature i
   });
 });
 
-describe("return a list of just the names of the cities who's temperature is less than 0 degrees", function() {
+describe("a function that tells people good job", function() {
   var people = [ 'Dom', 'Lyn', "Tim"];
 
   it("should print out 'Good Job, {name}' for each persons's name" , function() {
@@ -82,25 +82,26 @@ describe("product maker", function() {
 
   it("should return an array of numbers and returns a product of those numbers" , function() {
     
-    var finalProduct = main.returnProduct(arrayOfNumbers)
+    var finalProduct = main.makeReducerProduct(main.calculateProduct);
 
-    expect(finalProduct).toEqual(120);
+    expect(finalProduct(arrayOfNumbers)).toEqual(120);
   });
 });
 
-describe("list total price", function() {
+describe("list total price of all items", function() {
   var products = [
   { name: 'Basketball', price: 12.00 },
   { name: 'Tennis Racquet', price: 66.00 },
   { name: 'Tennis Balls', price: 9.00 },
   { name: 'Tennis Balls', price: 9.00 }
-];
+  ];
 
-    it("should return the total price of all items in the shopping cart" , function() {
-      
-      var totalPrice = main.returnTotal(products);
-      expect(totalPrice).toEqual(96);
-    });
+  it("should return the total price of all items in the shopping cart" , function() {
+    
+    // var totalPrice = main.returnTotal(products);
+    var totalPrice = main.makeReducerTotal(main.calculateTotal);
+    expect(totalPrice(products)).toEqual(96);
+  });
 });
 
 describe("Joins together strings with the seperator between them without using .join", function() {
