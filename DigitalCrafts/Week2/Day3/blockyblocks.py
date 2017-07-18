@@ -15,8 +15,8 @@ def main():
             self.font = pygame.font.Font("/Users/timbrady/Documents/Development/Code-practice/DigitalCrafts/Week2/day3/fonts/LuckiestGuy.ttf", 55)
             self.game_setup = pygame.display.set_caption('BlockyBlocks')
             self.clock = pygame.time.Clock()
-            self.color = (97, 159, 182)
-            self.wall_color = (255,255,0)
+            self.color = (77,137,7)
+            self.wall_color = (40,37,41)
             self.number_of_blocks = 1
             self.score_count = 1
             self.quit = False
@@ -53,6 +53,11 @@ def main():
                 number_of_blocks = number_of_blocks + 1
             return number_of_blocks
         
+        def menu_text(self):
+            menu = game_world.font.render("Blocky Blocks", 1, (255,0,0))
+            menu_rect = menu.get_rect(center=(game_world.width/2, 100))
+            game_world.screen.blit(menu,menu_rect)
+
         def run_menu(self):
             game_world.number_of_blocks = 10
             array_of_blocks = Create_blocks()
@@ -63,11 +68,10 @@ def main():
                         game_world.quit = True
                     pressed = pygame.key.get_pressed()
                     if pressed[pygame.K_RETURN]: 
-                        game_world.game_loop()  
+                        game_world.game_loop()
                 game_world.screen.fill((50,50,50))
-                menu = game_world.font.render("Blocky Blocks", 1, (255,0,0))
-                menu_rect = menu.get_rect(center=(game_world.width/2, 100))
-                game_world.screen.blit(menu,menu_rect)
+                # menu = game_world.font.render("Blocky Blocks", 1, (255,0,0))
+                game_world.menu_text()
                 game_world.block_mover(game_world.number_of_blocks, array_of_blocks)
                 pygame.display.update()
                 game_world.clock.tick(60)
@@ -100,7 +104,8 @@ def main():
             pygame.sprite.Sprite.__init__(self)
             self.xloc = game_world.width
             self.yloc = random.randint(10, game_world.height)
-            self.speed = random.randint(1, 10)
+            # self.speed = random.randint(1, 10)
+            self.speed = 7
             self.rect = pygame.Rect(self.xloc, self.yloc, 30, 30)
 
         def make_and_move(self):
@@ -115,7 +120,8 @@ def main():
         def reset(self):
             self.xloc = game_world.width
             self.yloc = random.randint(10, game_world.height)
-            self.speed = random.randint(1, 5)
+            # self.speed = random.randint(1, 5)
+            self.speed = 7
                     
     class Create_blocks(object):
         def __init__(self):
