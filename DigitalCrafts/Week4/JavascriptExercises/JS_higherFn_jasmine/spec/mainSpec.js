@@ -40,9 +40,11 @@ describe("testing cities whose temp is cooler than 70 degrees", function() {
   ];
 
   it("should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
-    var coolerThanSeventy = main.makeFilter(main.isCoolerThan);
+    var coolerThanSeventy = main.returnCoolCities(cities)
 
-    expect(coolerThanSeventy(cities)).toEqual([
+    // main.makeFilter(main.isCoolerThan);
+
+    expect(coolerThanSeventy()).toEqual([
       { name: 'Los Angeles', temperature: 60.0},
       { name: 'Atlanta', temperature: 52.0 },
       { name: 'Detroit', temperature: 48.0 }
@@ -50,21 +52,21 @@ describe("testing cities whose temp is cooler than 70 degrees", function() {
   });
 });
 
-describe("derp return a list of just the names of the cities who's temperature is less than 0 degrees", function() {
-  var cities = [
-    { name: 'Los Angeles', temperature: 60.0},
-    { name: 'Atlanta', temperature: 52.0 },
-    { name: 'Detroit', temperature: 48.0 },
-    { name: 'New York', temperature: 80.0 }
-  ];
+// describe("derp return a list of just the names of the cities who's temperature is less than 0 degrees", function() {
+//   var cities = [
+//     { name: 'Los Angeles', temperature: 60.0},
+//     { name: 'Atlanta', temperature: 52.0 },
+//     { name: 'Detroit', temperature: 48.0 },
+//     { name: 'New York', temperature: 80.0 }
+//   ];
 
-  it("derp should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
+//   it("derp should return a list of the cities in an array whose temperatures are less than 70 degrees", function() {
     
-    var finalCityDisplay = main.returnCoolCities(cities)
+//     var finalCityDisplay = main.returnCoolCities(cities)
 
-    expect(finalCityDisplay).toEqual(['Los Angeles', 'Atlanta','Detroit']);
-  });
-});
+//     expect(finalCityDisplay).toEqual(['Los Angeles', 'Atlanta','Detroit']);
+//   });
+// });
 
 describe("a function that tells people good job", function() {
   var people = [ 'Dom', 'Lyn', "Tim"];

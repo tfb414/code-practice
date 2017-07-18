@@ -44,22 +44,20 @@ function isEven(n){
 function squareIt(n){
     return n * n;
 }
-function isCoolerThan(obj){
-    return obj.temperature < 70;
 
-    //you need to rewrite this to be is cooler than a temp then initialize it
-    // var lessThan70 = isCoolerThan(obj)
+// var getTemp = get('temperature');
+// var lessThan70 = isCoolerThan(70);
+// var city = get('name');
+
+function isCoolerThan(threshold){
+    return function(tempOfCity){
+        return tempOfCity < threshold;
+    }
 }
 function returnCoolCities(cities){
-    return cities.filter(isCoolerThan).map(getName);
+    return cities.filter(isCoolerThan).map(getTemp);
     // return cities.map(get('name'));
 }
-
-// function coolCityName(cities){
-//     return returnCoolCities(isCoolerThan(cities));
-// }
-
-//this is really messed up. Keep trying
 
 function get(propName){
     return function (obj){
@@ -68,6 +66,9 @@ function get(propName){
 }
 function getName(obj){
     return obj.name;
+}
+function getTemp(obj){
+    return obj.temperature;
 }
 
 function addCongrats(peep){
@@ -193,6 +194,8 @@ if(typeof module !== "undefined"){
         makeReducerProduct: makeReducerProduct,
         calculateProduct: calculateProduct,
         calculateTotal: calculateTotal,
+        isCoolerThan: isCoolerThan,
+        get:get,
         
     }
 }
