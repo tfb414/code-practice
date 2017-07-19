@@ -1,0 +1,204 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+  max-width: 1000px;
+  /*justify-content: center;*/
+  margin: 0 auto;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  height: 100%;
+}
+body{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.top-level{
+  padding: 0;
+}
+.p-container{
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px auto;
+  padding: 5px auto;
+}
+.section{
+  padding: 0;
+  margin: 5px;
+  /*justify-content: center;*/
+}
+.p-image{
+  width:100%;
+  text-align:center;
+}
+.cover-image-space{
+  height: 50%;
+  min-height: 200px;
+  
+}
+h1 {
+  font-size: 44px;
+  /*margin: auto;*/
+  text-align: center;
+}
+
+h2 {
+  margin: auto;
+  text-align: center;
+}
+
+.flex-image {
+  width: 100%;
+}
+
+.p-content{
+  padding-bottom: 30px
+}
+
+.cover-image {
+  /* Image URLs are relative to the CSS file! */
+  background-image: url(../images/rainer_kg9uf1_c_scale,w_426.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 25% 0 25% 0;
+  /*Width and height were not performing the way that I thought that it would but we found that the above code about padding was able to solve the problem*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+  margin: auto;
+}
+footer{
+  height: 2%;
+}
+
+
+
+
+
+
+/* 
+@media screen and (min-width: 768px) {
+
+  .p-container{
+    justify-content: center;
+  }
+  .top-level{
+    display: flex;
+    flex-direction: row-reverse;
+    height: 97%;
+  }
+  .section{
+    width: 75%;
+    justify-content: center;
+    height: 100%;
+    overflow-y: none;
+  }
+  .section-quarter{
+    width: 25%;
+    overflow-y: scroll;
+    
+  }
+  .cover-image {
+    background-image: url(../images/rainer_kg9uf1_c_scale,w_727.jpg);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+} */
+
+@media screen and (min-width: 1000px) {
+  h1, h2 {
+    padding: 20px;
+    margin: auto;
+    
+  }
+  .cover-image {
+    background-image: url(../images/rainer_kg9uf1_c_scale,w_1180.jpg);
+    width:100%;
+    height: 550px;
+  }
+  .section{
+    width: 100%;
+    margin: auto;
+  }
+  .top-level{
+    display: block;
+    height: auto;
+  }
+  .section-quarter {
+    overflow-y: unset;
+  }
+  .p-container{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  height: 50%;
+  margin: 5px auto;
+  padding: 0px;
+  }
+
+  
+  .p-image{
+    width:33%;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+  }
+  .container{
+    display: block;
+  }
+  /* .flip-container {
+    perspective: 1000px;
+  } */
+    /* flip the pane when hovered */
+    .flip-container:hover .flipper, .flip-container.hover .flipper {
+      transform: rotateY(180deg);
+    }
+
+   .flip-container, .front, .back {
+    width: 320px;
+    height: 240px;
+  } 
+
+  /* flip speed goes here */
+  .flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+  }
+
+  /* hide back of pane during swap */
+  .front, .back {
+    backface-visibility: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* front pane, placed above back */
+  .front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+  }
+
+  /* back, initially hidden pane */
+  .back {
+    transform: rotateY(180deg);
+  }
+}

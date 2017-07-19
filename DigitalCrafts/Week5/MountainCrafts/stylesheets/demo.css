@@ -1,0 +1,40 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.cover-image {
+  /* Image URLs are relative to the CSS file! */
+  background-image: url(../images/tiger.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+@media screen and (min-width: 600px) {
+  .cover-image {
+    height: 700px;    
+  }
+}
+
+
+/* media query for high density displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+/* High density stuff here */
+  .cover-image {
+    background-image: url(../images/tiger2x.jpg);
+  }
+}
+
+
+.svg-image {
+  width: 100%;
+}
+
+.svg-markup {
+  width: 100%; /* hmm... not the right height */
+}
