@@ -1,0 +1,61 @@
+html {
+  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  height: 100%;
+}
+
+.top-level{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.lotto-space{
+    padding: 30px;
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.green-box{
+    height: 100px;
+    width: 100px;
+    background-color: #47A941;
+    margin: 10px;
+    display:flex;
+    border-radius: 50%;
+    box-shadow: inset 5px -3px 15px black;
+}
+
+.orange-box{
+    height: 90px;
+    width: 90px;
+    background-color: #FCB635;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: white;
+    border-radius: 50%;
+    box-shadow: inset 5px -3px 15px black;
+}
+
+.button-space{
+    display: flex;
+    justify-content: center;
+}
+
+.lotto-space{
+    padding: 0px;
+    margin: 0px;
+}
