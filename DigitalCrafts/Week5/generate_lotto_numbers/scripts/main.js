@@ -5,13 +5,17 @@ var NEW_NUMBERS_BUTTON_SELECTOR = '[data-target=new-numbers-button]';
 var ALL_LOTTO_SPACE = '[data-target="all-lottos-numbers"]'
 
 
-var arrayOf69 = createArrayOfNumbers(69);
-var arrayOf26 = createArrayOfNumbers(26);
-var button = document.querySelector('button');
+//get rid of the createArrayOfNumbers you don't need it!
+
+var arrayOf69 = createArrayOfNumbers(10);
+var arrayOf26 = createArrayOfNumbers(5);
+var $button = $('button');
+var $dropDownValue = $('[data-target="sets-of-numbers"]').val();
+
 
 function setLottoNumber(num, element){
     element.textContent = num;
-}
+};
 function chooseARandomNumber(range){
     var random = Math.floor(Math.random() * range);
     return random;
@@ -29,9 +33,10 @@ function createArrayOfNumbers(totalNumbers){
 }
 
 function addElements(selector, whereToAppend){
-    var originalElement = document.querySelector(selector)
-    var clone = originalElement.cloneNode(true);
-    document.querySelector(whereToAppend).appendChild(clone);
+    var $originalElement = $(selector)
+    var clone = $originalElement.clone(true);
+    generateLottoNumbers()
+    $(whereToAppend).append(clone);
 }
 
 function chooseLottoNumbers(arrayOfNumbers, dictionary, lengthThreshold){
@@ -60,13 +65,19 @@ function createLottoArray(){
 }
 
 function createEventListener(item, fnToRun){
-    item.addEventListener("click", function(event){
+    item.on("click", function(event){
         event.preventDefault();
-        fnToRun(item);
+        $dropDownValue = $('[data-target="sets-of-numbers"]').val();
+        fnToRun();
+
+        
     })
 }
 
+//I need to get rid of this and put it down in the initialize
+
 function generateLottoNumbers(){
+    
     var lottoArray = createLottoArray();
     var orangeBoxes = getArrayOf(LOTTO_DISPLAY_SELECTOR);
     orangeBoxes.forEach(function(x, i){
@@ -76,16 +87,21 @@ function generateLottoNumbers(){
 }
 
 function initialize(){
-    generateLottoNumbers();
-    createEventListener(button, generateLottoNumbers);
+    createEventListener($button, generateLottoNumbers);
+    
 }
-
+//you need to split it out so that it doens' thave to run "fnToRun"
+// addElements(LOTTO_SPACE_SELECTOR, ALL_LOTTO_SPACE);
 
 initialize();
 
-addElements(LOTTO_SPACE_SELECTOR, ALL_LOTTO_SPACE);
 
 
-//grab the data-taret ="lotto-space" then create and append that below.
+
+
+
+
+
+
 
 
