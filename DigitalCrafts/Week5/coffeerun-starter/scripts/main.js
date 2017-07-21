@@ -6,37 +6,46 @@ function initialize(){
             event.preventDefault();
             // console.log($theForm.serializeArray());
             
-            push(format($theForm));
+            pushDataToLocalStorage(format($theForm));
         });
+        var refreshPage = function(){
+            pushDataToLocalStorage(format($theForm));
+        }
+        var reloadedPage = function(){
+            pullDataFromLocalStorage('data');
+        }
+        
+        window.onbeforeunload = refreshPage();
+        window.onload = reloadedPage();
+
     });
     
 }
 initialize();
 
-function push(data){
-    var keys = Object.keys(data);
-    keys.forEach(function(thing){
-        // console.log(data);
-        console.log(thing);
-        console.log(data[thing])
-        localStorage.setItem(thing, data.thing);
+// function pushInfoBack
+
+function pushDataToLocalStorage(data){
+    
+    var name = data['coffee'];
+    localStorage.setItem(name, JSON.stringify(data));
+}
+function pullDataFromLocalStorage(stringifiedJSONName){
+    var JSONOrder = JSON.parse(localStorage.getItem(stringifiedJSONName));
+    var keys = Object.keys(stringifiedJSONName);
+    keys.forEach(function(key){
+        console.log(JSONOrder[key]);
+        if (JSONOrder[key] !== null){
+            document.getElementById(key).value = key;
+        }
     })
 }
-
-// function getData(){
-//     $formData = $('[data-target="grab-this"]');
-//     var formData = [];
-//     $formData.each(function(i, thing){
-//         formData.push(thing.value);
-//     })
-//     return formData;   
-// }
 
 function format(data){
     var dataObject = {};
     data.serializeArray().forEach(function(thing){
         dataObject[thing.name] = thing.value;
     })
-    console.log(dataObject);
     return dataObject;
 }
+
