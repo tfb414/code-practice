@@ -1,51 +1,75 @@
 function initialize(){
-    
+    var $theForm = $('[data-coffee-order="form"]')
     $(document).ready(function() {
-        var $theForm = $('[data-coffee-order="form"]')
+        
         $theForm.on('submit', function(event){
             event.preventDefault();
-            // console.log($theForm.serializeArray());
-            
             pushDataToLocalStorage(format($theForm));
         });
-        var refreshPage = function(){
-            pushDataToLocalStorage(format($theForm));
-        }
-        var reloadedPage = function(){
-            pullDataFromLocalStorage('data');
-        }
-        
-        window.onbeforeunload = refreshPage();
-        window.onload = reloadedPage();
-
+    // console.log(localStorage.getItem('coffeeRun'));
     });
-    
+
+    window.onbeforeunload = function(event){
+        pushDataToLocalStorage(format($theForm));
+    }
+    window.onload = function(even){
+        addDataToForm(pullDataFromLocalStorage('coffeeRun'));
+    }
 }
 initialize();
 
-// function pushInfoBack
-
 function pushDataToLocalStorage(data){
-    
-    var name = data['coffee'];
-    localStorage.setItem(name, JSON.stringify(data));
+    localStorage.setItem('coffeeRun', JSON.stringify(data));
 }
+
 function pullDataFromLocalStorage(stringifiedJSONName){
-    var JSONOrder = JSON.parse(localStorage.getItem(stringifiedJSONName));
-    var keys = Object.keys(stringifiedJSONName);
+    return JSON.parse(localStorage.getItem(stringifiedJSONName));
+    
+}
+
+function addDataToForm(JSONOrder){
+    var keys = Object.keys(JSONOrder);
     keys.forEach(function(key){
-        console.log(JSONOrder[key]);
-        if (JSONOrder[key] !== null){
-            document.getElementById(key).value = key;
+        if (JSONOrder[key] !== ""){
+            document.getElementsByName(key)[0].value = JSONOrder[key];   
         }
     })
 }
 
 function format(data){
     var dataObject = {};
-    data.serializeArray().forEach(function(thing){
-        dataObject[thing.name] = thing.value;
+    data.serializeArray().forEach(function(key){
+        dataObject[key.name] = key.value;
     })
     return dataObject;
 }
 
+
+
+
+// var URL =
+// $.get(URL, function(data){
+//     console.log(data);
+// });
+
+// function storeData(){
+//     this sets the item
+// }
+
+// var URL =
+// // $.get(URL, function(data){
+// //     console.log(data);
+// // });
+// $.get(URL, storeData)
+
+// .post(URL, myData, function(resp){
+//     console.log(resp);
+// })
+
+// myData = {
+//     coffeeOrder: 'espresso',
+//     emailAddress: "email@email.com",
+// };
+
+
+// //send out to the server get it back and set it ot the local storage
