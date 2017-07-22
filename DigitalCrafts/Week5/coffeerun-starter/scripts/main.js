@@ -10,16 +10,27 @@ function initialize(){
     });
 
     window.onbeforeunload = function(event){
-        pushDataToLocalStorage(format($theForm));
+        pushTempDataToLocalStorage(format($theForm));
     }
     window.onload = function(even){
-        addDataToForm(pullDataFromLocalStorage('coffeeRun'));
+        addDataBackToForm(pullDataFromLocalStorage('tempData'));
     }
 }
 initialize();
 
 function pushDataToLocalStorage(data){
-    localStorage.setItem('coffeeRun', JSON.stringify(data));
+    if (pullDataFromLocalStorage('coffeeRun') == null) {
+        var currentData = {}; 
+    }
+    else{
+        var currentData = pullDataFromLocalStorage('coffeeRun');
+    }
+    currentData[data['emailAddress']] = data
+    localStorage.setItem('coffeeRun', JSON.stringify(currentData));
+}
+
+function pushTempDataToLocalStorage(data){
+    localStorage.setItem('tempData', JSON.stringify(data));
 }
 
 function pullDataFromLocalStorage(stringifiedJSONName){
@@ -27,7 +38,7 @@ function pullDataFromLocalStorage(stringifiedJSONName){
     
 }
 
-function addDataToForm(JSONOrder){
+function addDataBackToForm(JSONOrder){
     var keys = Object.keys(JSONOrder);
     keys.forEach(function(key){
         if (JSONOrder[key] !== ""){
