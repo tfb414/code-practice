@@ -21,24 +21,26 @@
               <label for="emailInput">Email</label>
               <input class="form-control" type="email" name="emailAddress" id="emailInput"  value="" placeholder="dr@who.com">
             </div>
-            <div class="radio">
-              <label>
-                <input type="radio"  name="size" value="short">
-                Short
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="size" value="tall" checked>
-                Tall
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="size" value="grande">
-                Grande
-              </label>
-            </div>
+            <form>
+              <div class="radio">
+                <label>
+                  <input type="radio"  name="size" value="short">
+                  Short
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="size" value="tall" checked>
+                  Tall
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="size" value="grande">
+                  Grande
+                </label>
+              </div>
+            </form>
             <div class="form-group">
               <label for="flavorShot">Flavor Shot</label>
               <select  id="flavorShot" class="form-control" name="flavor">
@@ -57,6 +59,7 @@
           </form>
         </div>
       </div>
+      <div data-target="display-orders"></div>
     </section>
     <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"

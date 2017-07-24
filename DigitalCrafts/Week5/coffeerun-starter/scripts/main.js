@@ -1,10 +1,15 @@
+const URL = 'http://dc-coffeerun.herokuapp.com/api/coffeeorders';
+
 function initialize(){
     var $theForm = $('[data-coffee-order="form"]')
+    $('[data-target="display-orders"]').textContent = "derp";
     $(document).ready(function() {
-        
+        // var derp;
+        // getServerData();
         $theForm.on('submit', function(event){
             event.preventDefault();
-            pushDataToLocalStorage(format($theForm));
+            sendDataToLocalStorage(format($theForm));
+            // sendDataToServer(format($theForm));
         });
     // console.log(localStorage.getItem('coffeeRun'));
     });
@@ -18,7 +23,7 @@ function initialize(){
 }
 initialize();
 
-function pushDataToLocalStorage(data){
+function sendDataToLocalStorage(data){
     if (pullDataFromLocalStorage('coffeeRun') == null) {
         var currentData = {}; 
     }
@@ -55,8 +60,19 @@ function format(data){
     return dataObject;
 }
 
+function getServerData(){
+    $.get(URL, function(data){
+        
+        $('[data-target="display-orders"]').textContent = data;
+        console.log('done');
+    })
+}
 
-
+function sendDataToServer(data){
+    var currentData = {};
+    currentData[data['emailAddress']] = data;
+    $.post(URL, currentData);
+}
 
 // var URL =
 // $.get(URL, function(data){
