@@ -2,16 +2,14 @@ const URL = 'http://dc-coffeerun.herokuapp.com/api/coffeeorders';
 
 function initialize(){
     var $theForm = $('[data-coffee-order="form"]')
-    $('[data-target="display-orders"]').textContent = "derp";
+    // $('[data-target="display-orders"]').text('test');
+    getServerData();
     $(document).ready(function() {
-        // var derp;
-        // getServerData();
         $theForm.on('submit', function(event){
             event.preventDefault();
             sendDataToLocalStorage(format($theForm));
             // sendDataToServer(format($theForm));
         });
-    // console.log(localStorage.getItem('coffeeRun'));
     });
 
     window.onbeforeunload = function(event){
@@ -61,42 +59,35 @@ function format(data){
 }
 
 function getServerData(){
+    
     $.get(URL, function(data){
-        
-        $('[data-target="display-orders"]').textContent = data;
-        console.log('done');
+        var keys = Object.keys(data);
+        // console.log(data["derp@derp.com"]);
+        keys.forEach(function(element){
+            var elementKeys = Object.keys(data[element]);
+            elementKeys.forEach(function(elementKeys){
+                $('[data-target="display-orders"]').append("<div>" + elementKeys + "</div>");
+            });
+                
+        });
+        // $('[data-target="display-orders"]').text(data);
+        console.log(data);
     })
+}
+
+function printObject(object){
+    var keys = Object.keys(object);
+    keys.forEach(function(element){
+        console.log(element)
+        return(element);
+    });
+
 }
 
 function sendDataToServer(data){
     var currentData = {};
-    currentData[data['emailAddress']] = data;
-    $.post(URL, currentData);
+    $.post(URL, data, function(message){
+        console.log(message);
+    });
+
 }
-
-// var URL =
-// $.get(URL, function(data){
-//     console.log(data);
-// });
-
-// function storeData(){
-//     this sets the item
-// }
-
-// var URL =
-// // $.get(URL, function(data){
-// //     console.log(data);
-// // });
-// $.get(URL, storeData)
-
-// .post(URL, myData, function(resp){
-//     console.log(resp);
-// })
-
-// myData = {
-//     coffeeOrder: 'espresso',
-//     emailAddress: "email@email.com",
-// };
-
-
-// //send out to the server get it back and set it ot the local storage
