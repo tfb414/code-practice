@@ -10,7 +10,8 @@ function initialize(){
             event.preventDefault();
             sendDataToLocalStorage(format($theForm));
             sendDataToServer(format($theForm));
-            
+            addLastDisplayBox(format($theForm));
+            $('[data-coffee-order="form"]').trigger('reset');
         });
     
     getServerData(URL)
@@ -89,6 +90,7 @@ function createDisplayBox(data){
             'class': 'box',
             'data-target': 'box',
         });
+        console.log(data[key])
     individualOrderDiv.append(createEachElementDiv(data[key]));
     individualOrderDiv.append(createButton(data[key]["emailAddress"], "Delete"));
     individualOrderDiv.append(createButton(data[key]["emailAddress"], "Edit"));
@@ -98,6 +100,19 @@ function createDisplayBox(data){
     });
     $('[data-target="display-orders"]').append(tempDiv);
 
+}
+
+function addLastDisplayBox(data){
+    var tempDiv = $('[data-target="display-orders"]');
+    var individualOrderDiv = $("<div>", {
+            'class': 'box',
+            'data-target': 'box',
+        });
+    individualOrderDiv.append(createEachElementDiv(data));
+    individualOrderDiv.append(createButton(data["emailAddress"], "Delete"));
+    individualOrderDiv.append(createButton(data["emailAddress"], "Edit"));
+    tempDiv.append(individualOrderDiv);
+    $('[data-target="display-orders"]').append(tempDiv);
 }
 
 
@@ -156,6 +171,7 @@ function refreshData(){
 }
 
 //add validation
+//previous orders hide stuff
 //createa a class when you pull in the data
 //when they submit wipe the data
 //when pulling down the data check to see if the ajax request goes through and if it does then pull it if not grab it from local storage
