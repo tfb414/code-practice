@@ -1,23 +1,29 @@
 const URL = 'http://dc-coffeerun.herokuapp.com/api/coffeeorders';
 
 function initialize(){
-    var $theForm = $('[data-coffee-order="form"]')
-    // $('[data-target="display-orders"]').text('test');
-    getServerData();
+    var $theForm = $('[data-coffee-order="form"]');
+    // console.log($theForm);
+    
     $(document).ready(function() {
+        
         $theForm.on('submit', function(event){
             event.preventDefault();
             sendDataToLocalStorage(format($theForm));
-            // sendDataToServer(format($theForm));
+            sendDataToServer(format($theForm));
+            
         });
+    
+    getServerData(URL)
+        .then(createDisplayBox)
+        .then(buttonEventListener);
     });
-
     window.onbeforeunload = function(event){
         pushTempDataToLocalStorage(format($theForm));
     }
     window.onload = function(even){
         addDataBackToForm(pullDataFromLocalStorage('tempData'));
     }
+    
 }
 initialize();
 
@@ -58,30 +64,8 @@ function format(data){
     return dataObject;
 }
 
-function getServerData(){
-    
-    $.get(URL, function(data){
-        var keys = Object.keys(data);
-        // console.log(data["derp@derp.com"]);
-        keys.forEach(function(element){
-            var elementKeys = Object.keys(data[element]);
-            elementKeys.forEach(function(elementKeys){
-                $('[data-target="display-orders"]').append("<div>" + elementKeys + "</div>");
-            });
-                
-        });
-        // $('[data-target="display-orders"]').text(data);
-        console.log(data);
-    })
-}
-
-function printObject(object){
-    var keys = Object.keys(object);
-    keys.forEach(function(element){
-        console.log(element)
-        return(element);
-    });
-
+function getServerData(URL){
+    return $.get(URL);
 }
 
 function sendDataToServer(data){
@@ -89,5 +73,89 @@ function sendDataToServer(data){
     $.post(URL, data, function(message){
         console.log(message);
     });
+}
+
+function displayData(data){
+    console.log(data);
+}
+
+
+
+function createDisplayBox(data){
+    
+    var tempDiv = $('[data-target="display-orders"]');
+    Object.keys(data).forEach(function(key){
+        var individualOrderDiv = $("<div>", {
+            'class': 'box',
+            'data-target': 'box',
+        });
+    individualOrderDiv.append(createEachElementDiv(data[key]));
+    individualOrderDiv.append(createButton(data[key]["emailAddress"], "Delete"));
+    individualOrderDiv.append(createButton(data[key]["emailAddress"], "Edit"));
+    tempDiv.append(individualOrderDiv);
+
+        
+    });
+    $('[data-target="display-orders"]').append(tempDiv);
 
 }
+
+
+
+function createEachElementDiv(object){
+    return Object.keys(object).map(function(key){
+        if(key !== "_id" && key !== "__v"){
+            return $('<div>', {
+            'class': 'individual-info',
+            text: key + " : " +  object[key]
+            });
+        
+        }
+        
+    })
+}
+
+function createButton(dataTargetbyId, textOnButton){
+    var dataName = "data-target-" + textOnButton;
+    return $('<button>', {
+        [dataName]: dataTargetbyId,
+        text: textOnButton,
+        'class': 'individualOrderButtons'
+    })
+}
+
+function deleteData(dataTarget){
+    console.log(dataTarget.parent);
+    return $.ajax({
+        url: URL + '/' + dataTarget,
+        method: 'DELETE',
+    });
+}
+
+function buttonEventListener(){
+    var $buttons = $("button.individualOrderButtons");
+    $buttons.on("click", function(event){
+        event.preventDefault();
+        if(Object.keys(event.target.dataset) == "targetEdit"){
+        }
+        if(Object.keys(event.target.dataset) == "targetDelete"){
+            deleteData(event.target.dataset.targetDelete).then(refreshData);
+            $(this).parent().remove();
+        }
+        
+    });
+}
+
+
+
+function refreshData(){
+    $('[data-target="display-orders"]').empty();
+    getServerData(URL)
+        .then(createDisplayBox)
+        .then(buttonEventListener);
+}
+
+//add validation
+//createa a class when you pull in the data
+//when they submit wipe the data
+//when pulling down the data check to see if the ajax request goes through and if it does then pull it if not grab it from local storage

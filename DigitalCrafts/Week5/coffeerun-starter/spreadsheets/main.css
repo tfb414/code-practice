@@ -1,0 +1,30 @@
+body{
+    max-width: 1200px;
+}
+
+.display-orders{
+    /* padding: 30px; */
+    display:flex;
+    justify-content: center; 
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
+
+.display{
+    display: flex;
+    width: 33%;
+    flex-direction: row;
+    height: 200px;
+    word-wrap: break-word;
+}
+.center{
+    text-align: center;
+}
+.box{
+    background-color: green;
+    padding: 5px;
+    margin: 5px;
+    width: 300px;
+    height: 150px;
+    
+}
