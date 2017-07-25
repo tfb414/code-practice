@@ -1,0 +1,37 @@
+html {
+  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  height: 100%;
+}
+
+
+.top-level{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    
+}
+
+.form-top-level{
+    display:flex;
+    justify-content: center;
+    width: 500px;
+}
+
+.flex{
+    display: flex;
+}
+.form-control{
+    width: 500px;
+}
