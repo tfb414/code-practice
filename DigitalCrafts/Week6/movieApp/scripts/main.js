@@ -47,6 +47,8 @@ function searchAPI(formObject){
     return data;
  
 
+
+
 }
 
 MovieApp.prototype.submit = function(event){
