@@ -1,6 +1,1 @@
 -Event info in event handler
--.toString can read binary?
--is doing an error message first callback pattern basically a guard clause?
--are packets a type of stream?
--is it possible to change your error messages?
--is there a reason that when you are adding files that you don't add them all at once? like git add -A
