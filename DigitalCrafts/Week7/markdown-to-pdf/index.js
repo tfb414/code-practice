@@ -13,16 +13,17 @@ rl.question('filename: ', (filename) => {
             console.log(err.message);
             return;
         }
+        console.log('i found it');
         let content = buffer.toString();
         let upcased = content.toUpperCase();
         console.log(upcased);
-        fs.writeFile(outputFile, upcased, (err) =>{
-            if(err){
-                console.log(err.message);
-                return;
-            }
-            console.log('it worked');
-        });
+        // fs.writeFile(outputFile, upcased, (err) =>{
+        //     if(err){
+        //         console.log(err.message);
+        //         return;
+        //     }
+        //     console.log('it worked');
+        // });
     })
     
 });
@@ -36,3 +37,7 @@ rl.question('filename: ', (filename) => {
 //     console.log(yelp('tickles derp'));
 //     console.log(event);
 // });
+
+//npm init -y
+//npm install --save nodemon
+//npm install --save markdown-pdf
