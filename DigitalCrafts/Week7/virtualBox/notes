@@ -1,0 +1,5 @@
+vagrant up - starts the machine box
+vagrant ssh - to get into the machine
+
+
+vagrant status - do this in the vagrant folder to see it's status, don't do this inside of the vmbox
