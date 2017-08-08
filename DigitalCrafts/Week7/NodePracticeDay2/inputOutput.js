@@ -11,8 +11,8 @@ const rl = readline.createInterface({
     
 });
 
-r1.question('filename: ', (filename) => {
-    r1.close();
+rl.question('filename: ', (filename) => {
+    rl.close();
     fs.readFile(filename, (err, buffer) => {
         //many node things recieve the error call back first
         if(err){
