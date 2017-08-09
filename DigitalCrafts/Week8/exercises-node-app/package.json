@@ -1,5 +1,5 @@
 {
-  "name": "machine-learning",
+  "name": "postgresNode",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,8 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "csvtojson": "^1.1.7",
-    "ml-regression": "^4.4.2",
-    "ml-regression-polynomial": "^1.0.3"
+    "pg-promise": "^6.3.8"
   }
 }
