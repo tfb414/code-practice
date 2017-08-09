@@ -79,4 +79,4 @@ function getMemberById(id){
 
 
 pg.end();
-//disconnects from server
+//disconnects from serverup
