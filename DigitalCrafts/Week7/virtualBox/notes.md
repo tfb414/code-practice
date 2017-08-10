@@ -9,7 +9,7 @@ sudo apt-cache search postgresql | less
    space -page down
    gg -very top
    G -very bottom
-   / - start searching
+   / - start searchingist
    n - next result
    q - quit
 
