@@ -7,4 +7,6 @@ npm install express pg-promise
 npm install express pg-prommise
 npm install --save-dev mocha chai
 npm install --save-dev nodemon
-echo "node_modules" > .gitignore 
+echo "node_modules" > .gitignore    "single is supposed to create and add"
+add .env to git ignore --- double >> is supposed to add it
+npm install --save dotenv 
