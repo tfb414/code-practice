@@ -6,4 +6,4 @@ const dbConfig = {
     database: process.env.DB_NAME,
 };
 
-module.exports = pg(dbConfig);
+module.exports = pg(dbConfig);  
