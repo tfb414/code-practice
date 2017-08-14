@@ -3,9 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('users', { 
-    title: 'Dis be users',
-    message: 'We in users'
+  res.render('facilities', { 
+    title: 'Facilities',
+    message: 'We in facilities'
    });
 });
 
