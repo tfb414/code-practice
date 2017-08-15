@@ -1,9 +1,10 @@
-{{#each user}}
+{{#with user}}
     <h1>{{surname}}, {{firstname}}</h1>
     <div class = "indent">
         <p>Address: {{address}}</p>
         <p>Zipcode: {{zipcode}}</p>
         <p>Telephone: {{telephone}}</p>
     </div>
-    
-{{/each}}
+{{/with}}
+
+

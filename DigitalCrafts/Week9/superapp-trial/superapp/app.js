@@ -15,6 +15,7 @@ var users = require('./routes/users');
 var facilities = require('./routes/facilities')
 
 
+
 var app = express();
 
 // view engine setup
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/facilities', facilities);
+
 //asigning the variables that we added earlier
 
 

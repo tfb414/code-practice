@@ -1,0 +1,15 @@
+{{#each user}}
+    <h1>Member ID: {{memid}}</h1>
+    <form method="post">
+        <div>Last Name: </div>
+        <div><input value = "{{surname}}" name = "surname"> </div>
+        <div>First Name: </div>
+        <div><input value = "{{firstname}}" name = "firstname"></div>
+        <div>Address: </div>
+        <div><input value = "{{address}}" name = "address"></div>
+        <div>zipcode: </div>
+        <div><input value = "{{zipcode}}" name = "zipcode"></div>
+        <div><input type="submit"></div>
+    </form>
+    
+{{/each}}

@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 8001
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "/Users/timbrady/Documents/Development/Code-practice/DigitalCrafts/Week8/hello-express", "/vagrant_data"
+  config.vm.synced_folder "/Users/timbrady/Documents/Development/Code-practice/DigitalCrafts/Week9/superapp-trial/superapp", "/vagrant_data"
   # THIS IS WHERE YOU CAN CHANGE THE SYNCED FOLDER SO THAT EVERYTHING MATCHES UP!!
 
   # Provider-specific configuration so you can fine-tune various
