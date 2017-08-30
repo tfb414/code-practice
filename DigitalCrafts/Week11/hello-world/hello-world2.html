@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // const component = React.createElement(
+    //   "div",
+    //   null,
+    //   React.createElement(
+    //     "span",
+    //     null,
+    //     "142"
+    //   )
+    // );
+
+    //way 1
+    // function component(){
+    //   return (
+    //     <div>
+    //       <span>
+    //         142
+    //       </span>
+    //     </div>
+    //   );
+    // }
+
+      //version2
+    // function Component(){
+    //   return (
+    //     <div>
+    //       <span>
+    //         142
+    //       </span>
+    //     </div>
+    //   );
+    // }
+    
+    // version3
+    // function Readout(props){
+    //   return (
+    //     <div>
+    //       <span>
+    //         { props.temperature } {props.unit}
+    //       </span>
+    //     </div>
+    //   );
+    // }
+
+//if you get rid of the curly braces you cna't console.log
+//version4
+    // const Readout = props =>(
+    //   <div>
+    //     <span>
+    //       { props.temperature } {props.unit.toUpperCase() }
+    //     </span>
+    //   </div>
+    // );
+
+//version 5
+    // const formatUnits = units => (units.toUpperCase());
+
+    // const Readout = props =>(
+    //   <div>
+    //     <span>
+    //       { props.temperature } {formatUnits(props.unit) }
+    //     </span>
+    //   </div>
+    // );
+
+      //version 6
+    const formatUnits = units => (units.toUpperCase());
+
+    const Readout = ({temperature, unit}) =>(
+      <div>
+        <span>
+          { temperature } {formatUnits(unit) }
+        </span>
+      </div>
+    );
+
+
+
+    // ReactDOM.render(
+    //   //way 1
+    //   // component(),
+    //   //version2
+    //   // <Component />,
+    //   //version3
+    //   // <Readout temperature="178" unit="F" />,
+    //   //version4
+    //   // <Readout temperature="178" unit="f" />,
+    //   //version 5
+    //   <Readout temperature="178" unit="f" />,
+    //   document.getElementById('root')
+    // );
+let currentTemp = 50;
+setInterval(()=>{
+
+  ReactDOM.render(
+      
+      <Readout temperature={currentTemp} unit="f" />,
+      document.getElementById('root')
+  );
+
+  currentTemp = currentTemp + 5;
+
+}, 2000);
+    
+  </script>
+</body>
+</html>

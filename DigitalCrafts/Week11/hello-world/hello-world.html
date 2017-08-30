@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const component = React.createElement('h1', null, 'hello world');
+
+    ReactDOM.render(
+      component,
+      document.getElementById('root')
+    );
+  </script>
+</body>
+</html>
