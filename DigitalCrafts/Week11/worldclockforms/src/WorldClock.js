@@ -42,18 +42,18 @@ class WorldClock extends Component {
       });
   }
 
-  // _deleteClock = (cityName) => {
-  //   let newCities = {};
-  //   for (let c in this.state.cities) {
-  //     if (c !== cityName) {
-  //       newCities[c] = this.state.cities[c]
-  //     }
-  //   }
-  //   this.setState({
-  //     cities: newCities
-  //   });
+  _deleteClock = (cityName) => {
+    let newCities = {};
+    for (let c in this.state.cities) {
+      if (c !== cityName) {
+        newCities[c] = this.state.cities[c]
+      }
+    }
+    this.setState({
+      cities: newCities
+    });
 
-  // }
+  }
 
 }
 

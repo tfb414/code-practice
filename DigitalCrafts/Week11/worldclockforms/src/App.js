@@ -9,37 +9,39 @@ import utils from './utils.js';
 // import WorldClock from "./WorldClock.js";
 import Clock from "./Clock.js";
 
-const cityName = {
-      cities: {
-        Atlanta: {
-          tz: 'America/New_York'
-        },
-        'New York': {
-          tz: 'America/New_York'
-        },
-        Tokyo: {
-          tz: 'Asia/Tokyo'
-        },
-        Manila: {
-          tz: 'Asia/Manila'
-        },
-        'Mexico City': {
-          tz: 'America/Mexico_City'
-        },
-        'Berlin': {
-          tz: 'Europe/Berlin'
-        },
-      }
-}
-
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
-      label: 'magic form things',
+      label: 'Magic Clocks with no styling',
       timepiece: new Date(),
+      cities: {
+        Atlanta: {
+          tz: 'America/New_York',
+          active: false
+        },
+        'New York': {
+          tz: 'America/New_York',
+          active: false
+        },
+        Tokyo: {
+          tz: 'Asia/Tokyo',
+          active: false
+        },
+        Manila: {
+          tz: 'Asia/Manila',
+          active: false
+        },
+        'Mexico City': {
+          tz: 'America/Mexico_City',
+          active: false
+        },
+        'Berlin': {
+          tz: 'Europe/Berlin',
+          active: false
+        },
+      }
     };
   }
 
@@ -52,26 +54,34 @@ class App extends Component {
 
   render() {
 
-    const options = Object.keys(cityName.cities).map((cityName, idx) => (
+    const options = Object.keys(this.state.cities).map((cityName, idx) => (
       <div key={idx}>
         <label>
           <input 
             type="checkbox" 
-            onChange={this._changeTheTransformer} 
+            onChange={this._changeActiveCities}
+            value={cityName}
           />
           {cityName}
         </label>
       </div>
     ));
 
-    const myClocks = Object.keys(cityName.cities).map( (city, idx) => (
-      <Clock
-        name={city}
-        time={this.state.timepiece}
-        timeZone={cityName.cities[city].tz}
-        key={idx}
-      />
-    ));
+    //put this into another file
+
+    const myClocks = Object.keys(this.state.cities).map( (city, idx) => {
+      if(this.state.cities[city].active === true){
+        return <Clock
+          name={city}
+          time={this.state.timepiece}
+          timeZone={this.state.cities[city].tz}
+          key={idx}
+        />
+      }
+      
+    });
+
+    //put this into another file
     
     return (
       <div className="App">
@@ -85,8 +95,17 @@ class App extends Component {
   }
 
   _changeTheTransformer = (event) => {
+    console.log(event)
+    // this.setState({
+    //   transformer: utils[event.target.value]
+    // })
+  }
+
+  _changeActiveCities = (event) => {
+    let newCities = Object.assign({},this.state.cities);
+    newCities[event.target.value].active = !newCities[event.target.value].active;
     this.setState({
-      transformer: utils[event.target.value]
+      cities: newCities
     })
   }
 
@@ -107,41 +126,3 @@ class App extends Component {
 
 export default App;
 
-
-// const App = (props) => (
-//   <div className="App">
-//     <input type="text" />
-//     <div>This will show a thing</div>
-//   </div>
-// );
-
-
-// import WorldClock from './WorldClock';
-
-// const firstClocks = {
-//     cities: {
-//       Atlanta: {
-//         tz: 'America/New_York'
-//       },
-//       'New York': {
-//         tz: 'America/New_York'
-//       },
-//       Tokyo: {
-//         tz: 'Asia/Tokyo'
-//       },
-//   }
-// };
-
-// const secondClocks = {
-//     cities: {
-//       Manila: {
-//         tz: 'Asia/Manila'
-//       },
-//       'Mexico City': {
-//         tz: 'America/Mexico_City'
-//       },
-//       'Berlin': {
-//         tz: 'Europe/Berlin'
-//       },
-//     }
-// };
