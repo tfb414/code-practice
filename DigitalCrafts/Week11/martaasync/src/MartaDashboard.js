@@ -40,52 +40,6 @@ class MartaDashboard extends Component {
         clearInterval(this.martaDataGrabber);
     }
     render(){
-
-        // let destinationDropdown = this._destinations().map((data, idx)=>{
-        //     return (<option key={idx} value={data}>{data}</option>)
-        // })
-
-        // let directionDropdown = this._direction().map((data, idx)=>{
-        //     return (<option key={idx} value={data}>{data}</option>)
-        // })
-
-        // let lineDropdown = this._lines().map((data, idx)=>{
-        //     return (<option key={idx} value={data}>{data}</option>)
-        // })
-
-        // let destinationDropdownRender = ()=>{
-        //     return (
-        //     <div>
-        //         <label>
-        //             <select>
-        //                 {destinationDropdown}
-        //             </select>
-        //         </label>
-        //     </div>  
-        //     )
-        // }
-        // let directionDropdownRender = ()=>{
-        //     return (
-        //         <div>
-        //             <label>
-        //                 <select>
-        //                     {directionDropdown}
-        //                 </select>
-        //             </label>
-        //         </div>  
-        //     )
-        // }
-        // let linesDropdownRender = ()=>{
-        //     return (
-        //         <div>
-        //             <label>
-        //                 <select>
-        //                     {lineDropdown}
-        //                 </select>
-        //             </label>
-        //         </div>  
-        //     )
-        // }
         
         let martaOutput = this.state.martaData.map((data, idx)=> {            
             return(
@@ -112,7 +66,7 @@ class MartaDashboard extends Component {
               {/* {destinationDropdownRender()}
               {directionDropdownRender()}
               {linesDropdownRender()} */}
-              <Dropdowns destinations={this._destinations()}/>
+              <Dropdowns martaData={this.state.martaData}/>
               <div>
                 
                 {/* {martaOutput} */}
@@ -120,33 +74,7 @@ class MartaDashboard extends Component {
             </div>
         )
     }
-    _destinations = ()=>{
-        let destinations = new Set()
-        this.state.martaData.forEach((data)=>{
-            if(data.DESTINATION !== ""){
-                destinations.add(data.DESTINATION);
-            }
-        })
-        return Array.from(destinations).sort();
-        
-    }
 
-    _direction = ()=>{
-        let direction = new Set()
-        this.state.martaData.forEach((data)=>{
-            direction.add(data.DIRECTION)
-        })
-        return Array.from(direction).sort();
-    }
-
-    _lines = ()=>{
-        let lines = new Set()
-        this.state.martaData.forEach((data)=>{
-            lines.add(data.LINE)
-        })
-        return Array.from(lines).sort();
-    }
-    
 }
 
 export default MartaDashboard;

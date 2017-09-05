@@ -12,21 +12,20 @@ class Dropdowns extends Component{
     
 
     render(){
-        console.log(this.props.destinations);
 
-        let destinationDropdown = this.props.destinations.map((data, idx)=>{
+        let destinationDropdown = this._derpstinations("DESTINATION").map((data, idx)=>{
             return (<option key={idx} value={data}>{data}</option>)
         })
 
-        // let directionDropdown = this._direction().map((data, idx)=>{
-        //     return (<option key={idx} value={data}>{data}</option>)
-        // })
+        let directionDropdown = this._derpstinations("DIRECTION").map((data, idx)=>{
+            return (<option key={idx} value={data}>{data}</option>)
+        })
 
-        // let lineDropdown = this._lines().map((data, idx)=>{
-        //     return (<option key={idx} value={data}>{data}</option>)
-        // })
+        let lineDropdown = this._derpstinations("LINE").map((data, idx)=>{
+            return (<option key={idx} value={data}>{data}</option>)
+        })
 
-        let destinationDropdownRender = ()=>{
+        let DropdownRender = ()=>{
             return (
             <div>
                 <label>
@@ -34,46 +33,38 @@ class Dropdowns extends Component{
                         {destinationDropdown}
                     </select>
                 </label>
+                <label>
+                    <select>
+                        {directionDropdown}
+                    </select>
+                </label>
+                <label>
+                    <select>
+                        {lineDropdown}
+                    </select>
+                </label>
             </div>  
             )
         }
-        // let directionDropdownRender = ()=>{
-        //     return (
-        //         <div>
-        //             <label>
-        //                 <select>
-        //                     {directionDropdown}
-        //                 </select>
-        //             </label>
-        //         </div>  
-        //     )
-        // }
-        // let linesDropdownRender = ()=>{
-        //     return (
-        //         <div>
-        //             <label>
-        //                 <select>
-        //                     {lineDropdown}
-        //                 </select>
-        //             </label>
-        //         </div>  
-        //     )
-        // }
-        // return (
-        //     <div>
-        //         {destinationDropdownRender()}
-        //         {directionDropdownRender()}
-        //         {linesDropdownRender()}
-        //     </div>
-        // );
+        
+      
         return(
             <div>
-                {destinationDropdownRender()}
+                {DropdownRender()}
             </div>
         )
     }
 
-    
+    _derpstinations = (dataFromMarta)=>{
+        let holding = new Set()
+        this.props.martaData.forEach((data)=>{
+            if(data[dataFromMarta] !== ""){
+                holding.add(data[dataFromMarta]);
+            }
+        })
+        return Array.from(holding).sort();
+        
+    }
 }
 
 export default Dropdowns
