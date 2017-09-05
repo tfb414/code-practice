@@ -1,0 +1,25 @@
+
+
+
+.calc-buttons{
+    display:flex;
+    flex-direction: column;
+    border: solid 1px black;
+
+}
+
+.calc-row{
+    display:flex;
+    flex-direction: row;
+    border: solid 1px black;
+}
+
+.calc-column{
+    width: 33%;
+    border: solid 1px black;
+    
+}
+
+button {
+    width: 100%;
+}
