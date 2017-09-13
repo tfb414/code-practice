@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import CrewMember from './CrewMember';
+
 
 
 class Spaceship extends Component{
