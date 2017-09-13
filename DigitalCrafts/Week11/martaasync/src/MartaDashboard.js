@@ -1,19 +1,29 @@
 import React, { Component } from 'react';
-
 import Dropdowns from './dropdowns.js'
+import axios from 'axios';
+
+const MARTA_URL = "http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1"
 
 const getMartaData = (cb)=>{
-    fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
-        method: 'get',
-        // mode: "no-cors"
-    }).then(function(response) {
-        return response.json()
-    }).then(function(jsonData) {
-        console.log(jsonData);
-        cb(jsonData)
-    }).catch(function(err) {
-        console.log(err);
-    });
+    return axios.get(MARTA_URL)
+        .then((response)=>{
+            console.log(response.data);
+            cb(response.data)
+            return response.data;
+        })
+
+    // fetch('http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=2c514350-0c26-47dd-b872-7936af81c8e1', {
+    //     method: 'get',
+    //     // mode: "no-cors"
+    // }).then(function(response) {
+    //     return response.json()
+    // }).then(function(jsonData) {
+    //     console.log(jsonData);
+    //     cb(jsonData)
+    // }).catch(function(err) {
+    //     console.log(err);
+    // });
+
 }
 
 
