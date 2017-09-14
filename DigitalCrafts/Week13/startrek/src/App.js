@@ -15,7 +15,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <Planet name ="derp planet" classification = "M Class">
+        {/* <Planet name ="derp planet" classification = "M Class">
           <CrewMember name="Uhuru" rank="Commander" />
           <CrewMember name="Kirk" rank="Captain" />
           <BadAlien name="Kderp Khan" species="bad human" />
@@ -24,7 +24,7 @@ class App extends Component {
           <CrewMember name="Riker" rank ="Commander"/>
           <CrewMember name="Wesley Crusher" rank="Ensign"/>
           <BadAlien name="Borg" species="Borg"/>
-        </Spaceship>
+        </Spaceship> */}
       </div>
     );
   }
