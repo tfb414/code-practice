@@ -8,10 +8,10 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to cold reload</h2>
+          <h2>We did it!</h2>
         </div>
         <p className="App-intro">
-          derp2asdfasdfasdfaasdfa <code>src/App.js</code> and save to reload.
+          To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       </div>
     );
