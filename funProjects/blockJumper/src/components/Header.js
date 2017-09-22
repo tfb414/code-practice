@@ -20,7 +20,7 @@ const styles = {
         backgroundColor: 'grey',
         justifyContent: "space-around",
         alignItems: 'center',
-        height: 60,
+        height: 80,
         paddingTop: 15
 
     },
