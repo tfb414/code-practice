@@ -18,18 +18,25 @@ let colors = ['red', 'blue', 'black', 'green', 'purple', 'orange', 'brown', "yel
 let numberOfBoxes = [0, 1, 2, 3]
 let boxSpaceHeight = (height - 80)
 let boxHeight = boxSpaceHeight / numberOfBoxes.length;
+// let allBoxes = [];
 
 export default class blockJumper extends Component {
     constructor(props) {
-
         super(props);
         this.state = {
             boxes: {
-                height: ""
+                id: {
+                    id: "",
+                    visible: "",
+                    true: "",
+                    height: ""
+                }
+
             },
             height: "",
             width: ""
         };
+        // this._createBoxStates = this._createBoxStates.bind(this);
     }
 
     measureView(event) {
@@ -37,22 +44,31 @@ export default class blockJumper extends Component {
         let boxHeight = event.nativeEvent.layout.height / numberOfBoxes.length
 
         this.setState({
-
             height: event.nativeEvent.layout.height,
             width: event.nativeEvent.layout.width,
-            boxes: {
-                height: boxHeight
-            }
+            // boxes: {
+            //     height: boxHeight
+            // }
 
         })
 
     }
 
+    componentWillMount() {
+        // allBoxes = numberOfBoxes.map((key, idx) => {
+        //     return _createBoxStates();
+        // })
+    }
+
+
+
     render() {
 
         let allBoxes = numberOfBoxes.map((key, idx) => {
-            return _createBox()
+            return _createBox();
         })
+
+        console.log(allBoxes);
 
         return (
             <View style={styles.container}>
@@ -84,6 +100,7 @@ const _createBox = () => {
         <View style={{ height: boxHeight }}>
             <Box
                 boxText={'derp'}
+                id={'12'}
                 color={_getRandomColor()}
                 width={width}
                 height={boxHeight}
@@ -93,8 +110,28 @@ const _createBox = () => {
     );
 }
 
+const _generateId = () => {
+    return 55;
+}
+
+const _createBoxStates = () => {
+    let boxId = _generateId();
+
+    // this.setState({
+    //     boxes: {
+    //         [boxId]: {
+    //             id: boxId,
+    //             visible: true,
+    //             true: "",
+    //             height: ""
+    //         }
+    //     }
+    // })
+    _createBox(boxId);
+}
+
 const _derp = () => {
-    Alert.alert('derp', 'derp', 'derp')
+    Alert.alert('derp')
 }
 
 

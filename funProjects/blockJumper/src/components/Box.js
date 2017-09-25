@@ -19,14 +19,15 @@ export default class Box extends Component {
                 {
                     backgroundColor: "white",
                     width: this.props.width,
-                    height: this.props.height
+                    height: this.props.height,
+
 
                 }
                 ]}><TouchableHighlight onPress={this.props.onPress}>
-                        <Text style={[styles.text, { color: this.props.color }]}>{this.props.boxText}</Text>
+                        <Text style={[styles.text, { color: this.props.color }]} id={this.props.id}>{this.props.boxText}</Text>
                     </TouchableHighlight>
                 </View>
-            </View>
+            </View >
         )
 
     }
