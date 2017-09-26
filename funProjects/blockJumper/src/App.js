@@ -24,15 +24,7 @@ export default class blockJumper extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boxes: {
-                id: {
-                    id: "",
-                    visible: "",
-                    true: "",
-                    height: ""
-                }
-
-            },
+            boxes: [{ 1: { text: 'dummy!' } }],
             height: "",
             width: ""
         };
@@ -46,29 +38,50 @@ export default class blockJumper extends Component {
         this.setState({
             height: event.nativeEvent.layout.height,
             width: event.nativeEvent.layout.width,
-            // boxes: {
-            //     height: boxHeight
-            // }
+
 
         })
 
     }
 
     componentWillMount() {
-        // allBoxes = numberOfBoxes.map((key, idx) => {
-        //     return _createBoxStates();
-        // })
+
+        let newBox = []
+        numberOfBoxes.forEach((key, idx) => {
+            let color = _getRandomColor();
+            boxId = idx;
+            console.log(boxId)
+            newBox.push({
+                [boxId]: {
+                    id: boxId,
+                    visible: true,
+                    true: "",
+                    height: "",
+                    color: color,
+                    text: color,
+
+                }
+            })
+
+        })
+        console.log(newBox);
+        this._createBoxStates(newBox);
+
     }
+
+
+
+
 
 
 
     render() {
 
-        let allBoxes = numberOfBoxes.map((key, idx) => {
-            return _createBox();
+        let allBoxes = this.state.boxes.map((key, idx) => {
+            return this._createBox(idx);
         })
 
-        console.log(allBoxes);
+
 
         return (
             <View style={styles.container}>
@@ -81,7 +94,48 @@ export default class blockJumper extends Component {
         );
     }
 
+    _createBoxStates = (newBox) => {
+        this.setState({
+            boxes: newBox
+
+        })
+
+    }
+
+    _createBox = (boxId) => {
+        console.log(this.state.boxes);
+
+        let boxText = this.state.boxes[boxId][boxId].text;
+        let boxColor = this.state.boxes[boxId][boxId].color;
+
+        return (
+            <View style={{ height: boxHeight }}>
+                <Box
+                    boxText={boxText}
+                    id={boxId}
+                    color={boxColor}
+                    width={width}
+                    height={boxHeight}
+                    onPress={() => this._removeBox(boxId)}
+                />
+            </View>
+        );
+    }
+
+    _removeBox = (boxId) => {
+        let updateBoxes = [{ ...this.state.boxes, [boxId]: {...this.state.boxes} }]
+        console.log(updateBoxes);
+
+        this.setState({
+            boxes: updateBoxes
+        })
+        console.log(this.state.boxes)
+
+    }
+
 }
+
+
 
 
 
@@ -94,45 +148,9 @@ const _getRandomColor = () => {
     return colors[_getRandomArbitrary(0, colors.length)];
 }
 
-const _createBox = () => {
 
-    return (
-        <View style={{ height: boxHeight }}>
-            <Box
-                boxText={'derp'}
-                id={'12'}
-                color={_getRandomColor()}
-                width={width}
-                height={boxHeight}
-                onPress={_derp}
-            />
-        </View>
-    );
-}
 
-const _generateId = () => {
-    return 55;
-}
 
-const _createBoxStates = () => {
-    let boxId = _generateId();
-
-    // this.setState({
-    //     boxes: {
-    //         [boxId]: {
-    //             id: boxId,
-    //             visible: true,
-    //             true: "",
-    //             height: ""
-    //         }
-    //     }
-    // })
-    _createBox(boxId);
-}
-
-const _derp = () => {
-    Alert.alert('derp')
-}
 
 
 //you need to create state for each box you create. You should rewrite your box creater so that you have all of the information in the state: Text, color, width, height, etc.

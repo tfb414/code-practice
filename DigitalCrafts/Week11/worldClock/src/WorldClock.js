@@ -20,7 +20,7 @@ class WorldClock extends Component {
   }
 
   render() {
-    const myClocks = Object.keys(this.state.cities).map( (city, idx) => (
+    const myClocks = Object.keys(this.state.cities).map((city, idx) => (
       <Clock
         name={city}
         time={this.state.timepiece}
@@ -39,9 +39,9 @@ class WorldClock extends Component {
   }
 
   _updateTimes = () => {
-      this.setState({
-        timepiece: new Date()
-      });
+    this.setState({
+      timepiece: new Date()
+    });
   }
 
 }
