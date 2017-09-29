@@ -1,14 +1,15 @@
-import React, {Component} from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import React, { Component } from 'react'
+import { View, StyleSheet, Text } from 'react-native'
 
 const Header = (props) => {
-    const {headerContainer, headerText} = styles
+    const { headerContainer, headerText } = styles
 
     return (
         <View style={styles.headerContainer}>
-            <Text>Time: </Text>
-            <Text style={styles.headerText}>{props.title}</Text>
-            <Text>Score: </Text>
+            <Text style={styles.headerText}>Time: {props.time}</Text>
+            {/* <Text style={styles.headerText}>{props.title}</Text> */}
+            <Text style={styles.headerText}> Lives: {props.lives}</Text>
+            <Text style={styles.headerText}>Score: {props.score}</Text>
         </View>
     );
 }
@@ -21,8 +22,6 @@ const styles = {
         justifyContent: "space-around",
         alignItems: 'center',
         height: 80,
-        paddingTop: 15
-
     },
     headerText: {
         fontSize: 20

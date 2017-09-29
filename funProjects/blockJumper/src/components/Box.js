@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Dimensions, TouchableHighlight, Alert } from 'react-native';
+import renderIf from "../utility/renderIf"
 
 
 let { height, width } = Dimensions.get('window');
@@ -23,8 +24,8 @@ export default class Box extends Component {
 
 
                 }
-                ]}><TouchableHighlight onPress={this.props.onPress}>
-                        <Text style={[styles.text, { color: this.props.color }]} value={this.props.id}>{this.props.boxText}</Text>
+                ]}><TouchableHighlight onPress={this.props.onWrong} >
+                        <View>{renderIf(this.props.visible)(<Text style={[styles.text, { color: this.props.color }]}>{this.props.boxText}</Text>)}</View>
                     </TouchableHighlight>
                 </View>
             </View >
