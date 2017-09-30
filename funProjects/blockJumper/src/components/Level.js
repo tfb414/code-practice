@@ -22,8 +22,8 @@ let { height, width } = Dimensions.get('window');
 //pass in criteria
 //current lives
 
-let colors = ['red', 'blue', 'black', 'green', 'purple', 'orange', 'brown', "yellow"];
-let numberOfBoxes = [['red', "blue", true], ['red', "green", false], ['yellow', "blue", true], ['black', "purple", false]]
+
+
 let boxSpaceHeight = (height - 80 - 40)
 
 let boxWidth = width
@@ -51,9 +51,7 @@ export default class Level extends Component {
 
 
     measureView(event) {
-
         let boxHeight = event.nativeEvent.layout.height / this.state.level.length
-
         this.setState({
             height: event.nativeEvent.layout.height,
             width: event.nativeEvent.layout.width,
@@ -61,31 +59,26 @@ export default class Level extends Component {
         })
     }
     componentWillMount() {
-        console.log("component will mount")
         this._createState();
-
         this._createBoxStates();
     }
     componentDidMount() {
-        console.log('component did mount')
 
         this.countdown = setInterval(() => {
+
             if (this.state.time === 0) {
                 clearInterval(this.countdown)
             }
             this._updateTimer();
 
         }, 1000);
-
-        // countdown;
-
     }
 
     componentWillUnmount() {
         clearInterval(this.countdown);
     }
     render() {
-        console.log(this.props.live + "Live from your face")
+        console.log(this.props.criteria)
         let allBoxes = this.state.boxes.map((key, idx) => {
             return this._createBox(idx, key);
         })
@@ -127,6 +120,8 @@ export default class Level extends Component {
         })
     }
 
+
+
     _createBox = (boxId, key) => {
         let boxText = this.state.boxes[boxId][boxId].text;
         let boxColor = this.state.boxes[boxId][boxId].color;
@@ -140,44 +135,68 @@ export default class Level extends Component {
                     color={boxColor}
                     width={boxWidth}
                     height={this.state.boxHeight}
-                    onPress={() => this._removeBox(boxId)}
-                    onWrong={() => this.props.onWrong()}
+
+                    onRemoveLife={() => this._removeBox(boxId)}
                     visible={visible}
                 />
             </View>
         );
     }
 
+
+    _removeLife = () => {
+        this.props.onRemoveLife();
+    }
+
+    _checkScore = () => {
+        if (this.state.score == this.props.score + this.props.numberOfTrue) {
+            this.props.addScore(this.state.score);
+            this.props.onNextLevel();
+        }
+
+    }
+
+
     _removeBox = (boxId) => {
-
-
         let startingBoxState = [...this.state.boxes];
         startingBoxState[boxId][boxId].visible = false;
+        singleBox = startingBoxState[boxId][boxId];
+        console.log(singleBox.visible);
         if (startingBoxState[boxId][boxId].true) {
+
 
             this.setState({
                 boxes: startingBoxState,
                 score: (this.state.score + 1)
+            }, (() => {
+                this._checkScore()
             })
-        } else {
+            )
+
+
+
+
+
+
+        }
+        if (!startingBoxState[boxId][boxId].true) {
+            this._removeLife();
 
             this.setState({
                 boxes: startingBoxState
             })
         }
-
     }
     _updateTimer = () => {
-        console.log(this.state.time);
-        console.log(this.props.time);
         if (this.state.time > 0) {
             this.setState({
                 time: this.state.time - 1
             })
-        } else {
-
         }
-
+        else {
+            this.props.addScore(this.state.score);
+            this.props.onNextLevel();
+        }
     }
 
     _createState = () => {
@@ -190,18 +209,7 @@ export default class Level extends Component {
 
 }
 
-const _getRandomArbitrary = (min, max) => {
-    return parseInt(Math.random() * (max - min) + min);
-}
 
-const _getRandomColor = () => {
-
-    return colors[_getRandomArbitrary(0, colors.length)];
-}
-
-const _ranOutOfTime = () => {
-    Alert.alert('you ran out of time dummy!')
-}
 
 const styles = StyleSheet.create({
     container: {

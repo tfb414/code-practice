@@ -24,7 +24,7 @@ export default class Box extends Component {
 
 
                 }
-                ]}><TouchableHighlight onPress={this.props.onWrong} >
+                ]}><TouchableHighlight onPress={this.props.onRemoveLife} >
                         <View>{renderIf(this.props.visible)(<Text style={[styles.text, { color: this.props.color }]}>{this.props.boxText}</Text>)}</View>
                     </TouchableHighlight>
                 </View>

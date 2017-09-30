@@ -7,17 +7,21 @@ import {
   Text,
   View,
   Button,
-  TouchableHighlight
+  TouchableHighlight,
+  style
 } from 'react-native';
 
 
 
 const Menu = (props) => {
   //but a button in here that takes a function that changes the state in app.js
+  console.log('DERP DERP DERP DERP')
   return (
     <View style={styles.container}>
 
-      <TouchableHighlight onPress={props.startGame}><View><Text>Start</Text></View></TouchableHighlight>
+      <TouchableHighlight onPress={props.startGame}>
+        <View><Text style={styles.welcome}>Start</Text></View>
+      </TouchableHighlight>
     </View>
   );
 }
@@ -31,10 +35,10 @@ const styles = StyleSheet.create({
     margin: 50
   },
   welcome: {
-    fontSize: 30,
+    fontSize: 40,
     textAlign: 'center',
     margin: 10,
-    color: '#ffffff',
+    color: '#000000',
   },
 });
 
