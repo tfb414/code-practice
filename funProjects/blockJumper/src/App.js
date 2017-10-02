@@ -22,6 +22,7 @@ import Header from './components/Header'
 import renderIf from "./utility/renderIf"
 import GameOver from "./components/GameOver"
 import NextLevel from "./components/NextLevel"
+import RanOutOfTime from './components/RanOutOfTime'
 
 export default class blockJumper extends Component {
     constructor(props) {
@@ -33,7 +34,8 @@ export default class blockJumper extends Component {
                 menu: true,
                 level: false,
                 gameOver: false,
-                nextLevel: false
+                nextLevel: false,
+                ranOutOfTime: false,
             },
             level: 0,
         }
@@ -41,7 +43,7 @@ export default class blockJumper extends Component {
     render() {
         let levelOne = [['red', "blue", true], ['red', "green", false], ['yellow', "blue", true], ['black', "purple", false]];
         let levelTwo = [['red', "red", true], ['blue', "green", false], ['yellow', "yellow", true], ['black', "purple", false]];
-        let levelThree = [['red', "green", true], ['purple', "green", true], ['yellow', "yellow", false], ['green', "blue", false], ["purple", "purple", false], ['black', 'green', true]];
+        let levelThree = [['red', "green", true], ['purple', "green", true], ['yellow', "yellow", false], ['green', "blue", false], ["purple", "purple", false], ['green', 'green', true]];
         let levels = [levelOne, levelTwo, levelThree]
         let levelTime = [5, 5, 10]
         let numberOfTrue = [2, 2, 3]
@@ -54,8 +56,9 @@ export default class blockJumper extends Component {
         return (
             <View>
                 {renderIf(this.state.active.menu)(<Menu startGame={this._goToLevel} />)}
-                {renderIf(this.state.active.level)(<Level time={levelTime[this.state.level]} score={this.state.score} lives={this.state.lives} level={levels[this.state.level]} criteria={criteria[this.state.level]} onRemoveLife={this._removeLife} onGameOver={this._goToGameOver} numberOfTrue={numberOfTrue[this.state.level]} onNextLevel={this._goToNextLevel} addScore={(score) => { this._addScore(score) }} />)}
+                {renderIf(this.state.active.level)(<Level time={levelTime[this.state.level]} score={this.state.score} ranOutOfTime={this._ranOutOfTime} lives={this.state.lives} level={levels[this.state.level]} criteria={criteria[this.state.level]} onRemoveLife={this._removeLife} onGameOver={this._goToGameOver} numberOfTrue={numberOfTrue[this.state.level]} onNextLevel={this._goToNextLevel} addScore={(score) => { this._addScore(score) }} />)}
                 {renderIf(this.state.active.NextLevel)(<NextLevel nextLevel={this._goToLevel} />)}
+                {renderIf(this.state.active.ranOutOfTime)(<RanOutOfTime nextLevel={this._goToLevel} />)}
                 {renderIf(this.state.active.gameOver)(<GameOver score={this.state.score} />)}
             </View >
         );
@@ -83,6 +86,7 @@ export default class blockJumper extends Component {
                 level: true,
                 gameOver: false,
                 NextLevel: false,
+                ranOutOfTime: false,
             }
         })
     }
@@ -93,7 +97,8 @@ export default class blockJumper extends Component {
                 menu: true,
                 level: false,
                 gameOver: false,
-                NextLevel: false
+                NextLevel: false,
+                ranOutOfTime: false,
             }
         })
 
@@ -106,7 +111,8 @@ export default class blockJumper extends Component {
                 menu: false,
                 level: false,
                 gameOver: true,
-                NextLevel: false
+                NextLevel: false,
+                ranOutOfTime: false,
             }
         })
     }
@@ -119,7 +125,22 @@ export default class blockJumper extends Component {
                 level: false,
                 gameOver: false,
                 NextLevel: true,
+                ranOutOfTime: false,
             }
+        })
+    }
+
+    _ranOutOfTime = () => {
+        this.setState({
+            level: (this.state.level + 1),
+            active: {
+                menu: false,
+                level: false,
+                gameOver: false,
+                NextLevel: false,
+                ranOutOfTime: true
+            }
+
         })
     }
 

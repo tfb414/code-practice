@@ -13,6 +13,7 @@ import Box from './Box'
 import Header from './Header'
 import Goal from './Goal'
 
+
 let { height, width } = Dimensions.get('window');
 
 //pass in the numberOfBoxes
@@ -69,6 +70,7 @@ export default class Level extends Component {
             if (this.state.time === 0) {
                 clearInterval(this.countdown)
             }
+            console.log(this.state.time);
             this._updateTimer();
 
         }, 1000);
@@ -195,7 +197,7 @@ export default class Level extends Component {
         }
         else {
             this.props.addScore(this.state.score);
-            this.props.onNextLevel();
+            this.props.ranOutOfTime();
         }
     }
 
