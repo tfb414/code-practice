@@ -41,6 +41,9 @@ export default class blockJumper extends Component {
         }
     }
     render() {
+        
+        //currently hard coding three very simple levels
+        
         let levelOne = [['red', "blue", true], ['red', "green", false], ['yellow', "blue", true], ['black', "purple", false]];
         let levelTwo = [['red', "red", true], ['blue', "green", false], ['yellow', "yellow", true], ['black', "purple", false]];
         let levelThree = [['red', "green", true], ['purple', "green", true], ['yellow', "yellow", false], ['green', "blue", false], ["purple", "purple", false], ['green', 'green', true]];
