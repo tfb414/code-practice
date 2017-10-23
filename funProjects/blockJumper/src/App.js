@@ -3,6 +3,11 @@
 //when they click the wrong thing it should draw a line through it
 
 //procedurally generate levels
+//you have a file under funProjects
+
+//you can also do shapes with the word of the shapes
+//you can also do color shape and the word at the same time
+
 
 import React, { Component } from 'react';
 import {
