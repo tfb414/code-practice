@@ -28,6 +28,7 @@ import renderIf from "./utility/renderIf"
 import GameOver from "./components/GameOver"
 import NextLevel from "./components/NextLevel"
 import RanOutOfTime from './components/RanOutOfTime'
+import { levelCreator } from './utility/levelCreator'
 
 export default class blockJumper extends Component {
     constructor(props) {
@@ -46,14 +47,14 @@ export default class blockJumper extends Component {
         }
     }
     render() {
-        
+
         //currently hard coding three very simple levels
-        
+
         let levelOne = [['red', "blue", true], ['red', "green", false], ['yellow', "blue", true], ['black', "purple", false]];
         let levelTwo = [['red', "red", true], ['blue', "green", false], ['yellow', "yellow", true], ['black', "purple", false]];
         let levelThree = [['red', "green", true], ['purple', "green", true], ['yellow', "yellow", false], ['green', "blue", false], ["purple", "purple", false], ['green', 'green', true]];
         let levels = [levelOne, levelTwo, levelThree]
-        let levelTime = [5, 5, 10]
+        let levelTime = [30, 30, 10]
         let numberOfTrue = [2, 2, 3]
         let criteriaOne = "click all words colored blue";
         let criteriaTwo = "click all words that are the same color as their letters";
@@ -64,7 +65,7 @@ export default class blockJumper extends Component {
         return (
             <View>
                 {renderIf(this.state.active.menu)(<Menu startGame={this._goToLevel} />)}
-                {renderIf(this.state.active.level)(<Level time={levelTime[this.state.level]} score={this.state.score} ranOutOfTime={this._ranOutOfTime} lives={this.state.lives} level={levels[this.state.level]} criteria={criteria[this.state.level]} onRemoveLife={this._removeLife} onGameOver={this._goToGameOver} numberOfTrue={numberOfTrue[this.state.level]} onNextLevel={this._goToNextLevel} addScore={(score) => { this._addScore(score) }} />)}
+                {renderIf(this.state.active.level)(<Level time={levelTime[this.state.level]} score={this.state.score} ranOutOfTime={this._ranOutOfTime} lives={this.state.lives} level={this._createLevel} onRemoveLife={this._removeLife} onGameOver={this._goToGameOver} numberOfTrue={numberOfTrue[this.state.level]} onNextLevel={this._goToNextLevel} addScore={(score) => { this._addScore(score) }} />)}
                 {renderIf(this.state.active.NextLevel)(<NextLevel nextLevel={this._goToLevel} />)}
                 {renderIf(this.state.active.ranOutOfTime)(<RanOutOfTime nextLevel={this._goToLevel} />)}
                 {renderIf(this.state.active.gameOver)(<GameOver score={this.state.score} />)}
@@ -150,6 +151,16 @@ export default class blockJumper extends Component {
             }
 
         })
+    }
+
+    _createLevel = () => {
+        // return [['red', "blue", true], ['red', "green", false], ['yellow', "blue", true], ['black', "purple", false]]
+        return levelCreator();
+        // let criteriaType = ['Click all words that are the same color as the word', 'click all the words that are not the same color as the word', 'click all the words that are colored '];
+        // let colors = ['blue', 'red', 'black', 'brown', 'yellow', 'purple', 'orange'];
+
+
+
     }
 
 

@@ -34,13 +34,13 @@ export default class Level extends Component {
         super(props);
 
         this.state = {
-            boxes: [{ 1: { text: 'dummy!' } }],
+            boxes: [],
             boxHeight: "",
             boxWidth: "",
-            time: props.time,
+            time: 15,
             score: props.score,
-            level: props.level,
-
+            level: "",
+            criteria: "",
             height: "",
             width: "",
         };
@@ -60,8 +60,12 @@ export default class Level extends Component {
         })
     }
     componentWillMount() {
-        this._createState();
-        this._createBoxStates();
+        let level = this.props.level();
+
+        this._createLevelFromProps(level);
+        this._createBoxStates(level[0]);
+
+
     }
     componentDidMount() {
 
@@ -80,14 +84,14 @@ export default class Level extends Component {
         clearInterval(this.countdown);
     }
     render() {
-        console.log(this.props.criteria)
         let allBoxes = this.state.boxes.map((key, idx) => {
+
             return this._createBox(idx, key);
         })
         return (
             <View style={styles.container}>
                 <Header title={"Color Clicker!"} time={this.state.time} score={this.state.score} lives={this.props.lives} />
-                <Goal title={this.props.criteria} />
+                <Goal title={this.state.criteria} />
                 <View onLayout={(event) => this.measureView(event)} style={styles.boxContainer}>
                     {allBoxes}
                 </View>
@@ -95,12 +99,38 @@ export default class Level extends Component {
         );
     }
 
-    _createBoxStates = () => {
+    _createLevelFromProps = (level) => {
+
+        let numberOfTrue = this._numberOfTrue(level[0]);
+
+
+        this.setState({
+            level: level[0],
+            criteria: level[1],
+            numberOfTrue: numberOfTrue,
+            time: this.props.time
+        })
+    }
+
+    _numberOfTrue = (level) => {
+        let derp = level.filter((thing) => {
+            return thing[2] === true;
+        })
+        console.log('this number of true is: ' + derp.length);
+        return derp.length;
+    }
+
+
+    _createBoxStates = (level) => {
+
         let newBox = []
-        this.state.level.forEach((key, idx) => {
-            let isItTrue = this.state.level[idx][2];
-            let theColor = this.state.level[idx][1];
-            let whatIsTheText = this.state.level[idx][0];
+        console.log(level)
+        level.forEach((key, idx) => {
+
+            let isItTrue = level[idx][2];
+            let theColor = level[idx][1];
+            let whatIsTheText = level[idx][0];
+
             boxId = idx;
             newBox.push({
                 [boxId]: {
@@ -118,7 +148,7 @@ export default class Level extends Component {
 
         this.setState({
             boxes: newBox,
-            boxHeight: (height - 80 - 40) / this.state.level.length,
+            boxHeight: (height - 80 - 40) / level.length,
         })
     }
 
@@ -151,7 +181,11 @@ export default class Level extends Component {
     }
 
     _checkScore = () => {
-        if (this.state.score == this.props.score + this.props.numberOfTrue) {
+        console.log(this.state.score);
+        console.log(this.props.score);
+        console.log(this.state.numberOfTrue);
+        if (this.state.score == (this.props.score + this.state.numberOfTrue)) {
+            console.log('true')
             this.props.addScore(this.state.score);
             this.props.onNextLevel();
         }
@@ -163,7 +197,6 @@ export default class Level extends Component {
         let startingBoxState = [...this.state.boxes];
         startingBoxState[boxId][boxId].visible = false;
         singleBox = startingBoxState[boxId][boxId];
-        console.log(singleBox.visible);
         if (startingBoxState[boxId][boxId].true) {
 
 
@@ -201,11 +234,6 @@ export default class Level extends Component {
         }
     }
 
-    _createState = () => {
-        this.setState({
-            time: this.props.time
-        })
-    }
 
 
 
