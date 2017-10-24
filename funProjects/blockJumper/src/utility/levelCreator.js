@@ -1,8 +1,38 @@
-export const levelCreator = () => {
+export const levelCreator = (level) => {
 
-    let criteriaType = ['Click all words that are the same color as the word', 'click all the words that are not the same color as the word', 'click all the words that are colored '];
+    //you could set up difficulties where if the level is between x-y then difficulty is blank
+    //then you could weight it so that the easier criteria came at the start
+    //rewrite algorithms so that there are a certain number of correct and incorrect responses possibly based on difficulty
+    //there cannot be no correct answers
+
+    let numberOfColorPairs;
+    let time;
+    let numberOfCorrect;
+    console.log(level);
+    console.log('level creator')
+    if (level <= 2) {
+        //from 0-2
+        numberOfColorPairs = 4
+        time = 8;
+        numberOfCorrect = getRandomArbitrary(1, 3);
+    }
+    if (level > 2 && level < 5) {
+        //from 3-5
+        numberOfColorPairs = 6
+        time = 10;
+        numberOfCorrect = getRandomArbitrary(2, 4);
+    }
+    if (level >= 5) {
+        //greater than 5
+        numberOfColorPairs = 8
+        time = 12;
+        numberOfCorrect = getRandomArbitrary(3, 6);
+    }
+
+
+    let criteriaType = ['Click the Words whose color matches itself', 'Click all words whose color does not match itself', 'Click all words that are colored:  '];
     let colors = ['blue', 'red', 'black', 'brown', 'yellow', 'purple', 'orange'];
-    let numberOfColorPairs = 8;
+
 
     generatePairs = (colors, numberOfColorPairs, criteriaType) => {
         console.log('did this work')
@@ -18,9 +48,9 @@ export const levelCreator = () => {
             colorPairs.push(executeCriteriaType(criteriaTypeNumber, color1, color2, singleColor));
         }
         if (criteriaTypeNumber === 2) {
-            return [colorPairs, criteriaType[criteriaTypeNumber] + singleColor];
+            return [colorPairs, criteriaType[criteriaTypeNumber] + singleColor, time];
         } else {
-            return [colorPairs, criteriaType[criteriaTypeNumber]];
+            return [colorPairs, criteriaType[criteriaTypeNumber], time];
         }
 
 

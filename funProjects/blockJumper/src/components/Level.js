@@ -43,6 +43,24 @@ export default class Level extends Component {
             criteria: "",
             height: "",
             width: "",
+            leftStyle: {
+                display: 'flex',
+                flexDirection: 'column',
+                height: boxSpaceHeight,
+                backgroundColor: 'blue',
+
+
+
+
+            },
+            rightStyle: {
+                display: 'flex',
+                flexDirection: 'column',
+                height: boxSpaceHeight,
+                backgroundColor: 'black',
+
+
+            }
         };
 
 
@@ -56,11 +74,16 @@ export default class Level extends Component {
         this.setState({
             height: event.nativeEvent.layout.height,
             width: event.nativeEvent.layout.width,
-
+            leftStyle: {
+                width: event.nativeEvent.layout.width / 2
+            },
+            rightStyle: {
+                width: event.nativeEvent.layout.width / 2
+            }
         })
     }
     componentWillMount() {
-        let level = this.props.level();
+        let level = this.props.level(this.props.level);
 
         this._createLevelFromProps(level);
         this._createBoxStates(level[0]);
@@ -74,7 +97,7 @@ export default class Level extends Component {
             if (this.state.time === 0) {
                 clearInterval(this.countdown)
             }
-            console.log(this.state.time);
+
             this._updateTimer();
 
         }, 1000);
@@ -84,16 +107,28 @@ export default class Level extends Component {
         clearInterval(this.countdown);
     }
     render() {
-        let allBoxes = this.state.boxes.map((key, idx) => {
-
-            return this._createBox(idx, key);
+        let leftBoxes = []
+        let rightBoxes = []
+        this.state.boxes.forEach((key, idx) => {
+            if (idx >= (this.state.boxes.length / 2)) {
+                leftBoxes.push(this._createBox(idx, key))
+            }
+            else {
+                rightBoxes.push(this._createBox(idx, key))
+            }
         })
+
         return (
             <View style={styles.container}>
                 <Header title={"Color Clicker!"} time={this.state.time} score={this.state.score} lives={this.props.lives} />
                 <Goal title={this.state.criteria} />
                 <View onLayout={(event) => this.measureView(event)} style={styles.boxContainer}>
-                    {allBoxes}
+                    <View style={this.state.leftStyle}>
+                        {leftBoxes}
+                    </View>
+                    <View style={this.state.rightStyle}>
+                        {rightBoxes}
+                    </View>
                 </View>
             </View>
         );
@@ -108,7 +143,7 @@ export default class Level extends Component {
             level: level[0],
             criteria: level[1],
             numberOfTrue: numberOfTrue,
-            time: this.props.time
+            time: level[2]
         })
     }
 
@@ -116,7 +151,7 @@ export default class Level extends Component {
         let derp = level.filter((thing) => {
             return thing[2] === true;
         })
-        console.log('this number of true is: ' + derp.length);
+
         return derp.length;
     }
 
@@ -124,7 +159,7 @@ export default class Level extends Component {
     _createBoxStates = (level) => {
 
         let newBox = []
-        console.log(level)
+
         level.forEach((key, idx) => {
 
             let isItTrue = level[idx][2];
@@ -148,7 +183,7 @@ export default class Level extends Component {
 
         this.setState({
             boxes: newBox,
-            boxHeight: (height - 80 - 40) / level.length,
+            boxHeight: (height - 80 - 40) / level.length * 2,
         })
     }
 
@@ -159,13 +194,14 @@ export default class Level extends Component {
         let boxColor = this.state.boxes[boxId][boxId].color;
         let visible = this.state.boxes[boxId][boxId].visible;
 
+
         return (
-            <View style={{ height: this.state.boxHeight }} key={boxId}>
+            <View style={{ height: this.state.boxHeight }} key={boxId} >
                 <Box
                     boxText={boxText}
                     id={boxId}
                     color={boxColor}
-                    width={boxWidth}
+                    width={boxWidth / 2}
                     height={this.state.boxHeight}
 
                     onRemoveLife={() => this._removeBox(boxId)}
@@ -181,11 +217,9 @@ export default class Level extends Component {
     }
 
     _checkScore = () => {
-        console.log(this.state.score);
-        console.log(this.props.score);
-        console.log(this.state.numberOfTrue);
+
         if (this.state.score == (this.props.score + this.state.numberOfTrue)) {
-            console.log('true')
+
             this.props.addScore(this.state.score);
             this.props.onNextLevel();
         }
@@ -248,12 +282,29 @@ const styles = StyleSheet.create({
         height: height,
         backgroundColor: 'white'
     },
+    // boxContainerLeft: {
+
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     height: boxSpaceHeight,
+    //     backgroundColor: 'blue',
+    //     height: 30,
+    // },
+    // boxContainerRight: {
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     height: boxSpaceHeight,
+    //     backgroundColor: 'black',
+    //     height: 30
+    // },
     boxContainer: {
-
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         height: boxSpaceHeight,
-
+        borderRadius: 12,
+        borderWidth: 0.5,
+        borderColor: 'red',
+        // backgroundColor: 'purple'
 
     }
 });

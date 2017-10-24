@@ -21,6 +21,8 @@ export default class Box extends Component {
                     backgroundColor: "white",
                     width: this.props.width,
                     height: this.props.height,
+                    // left: this.props.left,
+
 
 
                 }
@@ -42,10 +44,10 @@ export default class Box extends Component {
 
 const styles = StyleSheet.create({
     box: {
-        flex: 1,
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        position: 'absolute',
+        // position: 'absolute',
         borderRadius: 4,
         borderWidth: 0.5,
         borderColor: 'grey',
