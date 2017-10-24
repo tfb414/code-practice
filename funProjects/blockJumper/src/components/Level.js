@@ -43,24 +43,6 @@ export default class Level extends Component {
             criteria: "",
             height: "",
             width: "",
-            leftStyle: {
-                display: 'flex',
-                flexDirection: 'column',
-                height: boxSpaceHeight,
-                backgroundColor: 'blue',
-
-
-
-
-            },
-            rightStyle: {
-                display: 'flex',
-                flexDirection: 'column',
-                height: boxSpaceHeight,
-                backgroundColor: 'black',
-
-
-            }
         };
 
 
@@ -123,10 +105,10 @@ export default class Level extends Component {
                 <Header title={"Color Clicker!"} time={this.state.time} score={this.state.score} lives={this.props.lives} />
                 <Goal title={this.state.criteria} />
                 <View onLayout={(event) => this.measureView(event)} style={styles.boxContainer}>
-                    <View style={this.state.leftStyle}>
+                    <View style={styles.boxContainerLeft}>
                         {leftBoxes}
                     </View>
-                    <View style={this.state.rightStyle}>
+                    <View style={styles.boxContainerRight}>
                         {rightBoxes}
                     </View>
                 </View>
@@ -282,21 +264,20 @@ const styles = StyleSheet.create({
         height: height,
         backgroundColor: 'white'
     },
-    // boxContainerLeft: {
-
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     height: boxSpaceHeight,
-    //     backgroundColor: 'blue',
-    //     height: 30,
-    // },
-    // boxContainerRight: {
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     height: boxSpaceHeight,
-    //     backgroundColor: 'black',
-    //     height: 30
-    // },
+    boxContainerLeft: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: boxSpaceHeight,
+        backgroundColor: 'blue',
+        height: 30,
+    },
+    boxContainerRight: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: boxSpaceHeight,
+        backgroundColor: 'black',
+        height: 30
+    },
     boxContainer: {
         display: 'flex',
         flexDirection: 'row',

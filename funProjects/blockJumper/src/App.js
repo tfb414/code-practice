@@ -1,11 +1,20 @@
 //when they run out of time they should lose a life
 //include the score header between levels, also change the message when they run out of time.
 //when they click the wrong thing it should draw a red line through it
-//two columns of answers
+//add better looks
+//make it so procedurally generated have a certain number of right and wrong answers
 
 
 //you can also do shapes with the word of the shapes
 //you can also do color shape and the word at the same time
+
+
+//things I've done
+
+//two columns of answers
+//basic procedurally generated levels
+//time aspect
+
 
 
 import React, { Component } from 'react';
