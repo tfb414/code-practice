@@ -11,9 +11,6 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 
-// <TouchableHighlight onPress={props.startGame}>
-//         <View><Text style={styles.welcome}>Start</Text></View>
-//       </TouchableHighlight>
 
 
 
@@ -23,11 +20,10 @@ const Menu = (props) => {
 
 
     <View style={styles.container}>
-      {/* <View style={styles.container}> */}
+
       <Button
         raised
-        /* icon={{ name: 'home', size: 32 }} */
-        buttonStyle={{ backgroundColor: '#5ABC97', borderRadius: 10 }}
+        buttonStyle={{ backgroundColor: '#F5C766', borderRadius: 10 }}
         fontSize={50}
         textStyle={{ textAlign: 'center' }}
         title={`Start`}

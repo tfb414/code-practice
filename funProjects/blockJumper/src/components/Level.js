@@ -56,12 +56,6 @@ export default class Level extends Component {
         this.setState({
             height: event.nativeEvent.layout.height,
             width: event.nativeEvent.layout.width,
-            leftStyle: {
-                width: event.nativeEvent.layout.width / 2
-            },
-            rightStyle: {
-                width: event.nativeEvent.layout.width / 2
-            }
         })
     }
     componentWillMount() {
@@ -152,7 +146,7 @@ export default class Level extends Component {
             newBox.push({
                 [boxId]: {
                     id: boxId,
-                    visible: true,
+                    isCorrect: "",
                     true: isItTrue,
                     color: theColor,
                     text: whatIsTheText,
@@ -174,7 +168,7 @@ export default class Level extends Component {
     _createBox = (boxId, key) => {
         let boxText = this.state.boxes[boxId][boxId].text;
         let boxColor = this.state.boxes[boxId][boxId].color;
-        let visible = this.state.boxes[boxId][boxId].visible;
+        let isCorrect = this.state.boxes[boxId][boxId].isCorrect;
 
 
         return (
@@ -187,7 +181,7 @@ export default class Level extends Component {
                     height={this.state.boxHeight}
 
                     onRemoveLife={() => this._removeBox(boxId)}
-                    visible={visible}
+                    isCorrect={isCorrect}
                 />
             </View>
         );
@@ -195,6 +189,11 @@ export default class Level extends Component {
 
 
     _removeLife = () => {
+        let display;
+        if (this.props.display === true) {
+            console.log('true');
+        }
+        if (this.props.display === false) { console.log('false') }
         this.props.onRemoveLife();
     }
 
@@ -211,10 +210,10 @@ export default class Level extends Component {
 
     _removeBox = (boxId) => {
         let startingBoxState = [...this.state.boxes];
-        startingBoxState[boxId][boxId].visible = false;
+        startingBoxState[boxId][boxId].isCorrect = false;
         singleBox = startingBoxState[boxId][boxId];
         if (startingBoxState[boxId][boxId].true) {
-
+            startingBoxState[boxId][boxId].isCorrect = true;
 
             this.setState({
                 boxes: startingBoxState,

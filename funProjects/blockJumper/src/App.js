@@ -1,9 +1,11 @@
 //when they run out of time they should lose a life
 //include the score header between levels, also change the message when they run out of time.
-//when they click the wrong thing it should draw a red line through it
+
 //add better looks
 //color scheme - 5ABC97(grene) EF814C(orange) F5C766(yellow) white 104471(blue)
 //add pause button
+//figure out the sizing of the buttons on each screen
+//also see if you want to have background color, color of the text, and written color
 
 
 
@@ -12,11 +14,12 @@
 
 
 //things I've done
-
+//updated the ui of the header
 //two columns of answers
 //basic procedurally generated levels
 //time aspect
 //make it so procedurally generated have a certain number of right and wrong answers
+//when they click an option it gives a green check or a red x if it is correct or incorrect
 
 
 
@@ -59,9 +62,20 @@ export default class blockJumper extends Component {
             level: 0,
         }
     }
+    measureView(event) {
+
+        this.setState({
+
+            height: event.nativeEvent.layout.height,
+            width: event.nativeEvent.layout.width,
+        })
+    }
+
+
     render() {
+        console.log(this.state.height)
         return (
-            <View>
+            <View style={[styles.container, { width: this.state.width, height: this.state.height }]} onLayout={(event) => this.measureView(event)}>
                 {renderIf(this.state.active.menu)(<Menu startGame={this._goToLevel} />)}
                 {renderIf(this.state.active.level)(<Level score={this.state.score} ranOutOfTime={this._ranOutOfTime} lives={this.state.lives} level={this._createLevel} onRemoveLife={this._removeLife} onGameOver={this._goToGameOver} onNextLevel={this._goToNextLevel} addScore={(score) => { this._addScore(score) }} />)}
                 {renderIf(this.state.active.NextLevel)(<NextLevel nextLevel={this._goToLevel} />)}
@@ -70,7 +84,10 @@ export default class blockJumper extends Component {
             </View >
         );
 
+
     }
+
+
     _removeLife = () => {
         if (this.state.lives === 1) {
             this._goToGameOver();
@@ -168,5 +185,18 @@ export default class blockJumper extends Component {
 
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        backgroundColor: '#5ABC97',
+
+        // borderRadius: 30,
+        // color: '#ffffff',
+
+
+    }
+})
 
 

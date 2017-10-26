@@ -57,7 +57,7 @@ export const Lives = (props) => {
 
 
     return (
-        <View style={styles.iconContainer}>
+        <View style={styles.lifeContainer}>
             {livesDisplay}
         </View>
     )
@@ -71,6 +71,13 @@ const styles = {
         alignItems: 'center',
         padding: 15,
         // height: 80,
+    },
+    lifeContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 15,
+        width: 70
     },
     headerText: {
         fontSize: 25,

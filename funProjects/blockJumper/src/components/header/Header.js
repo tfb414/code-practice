@@ -22,7 +22,6 @@ const HeaderComponent = (props) => {
                 leftComponent={<Time time={props.time} />}
                 centerComponent={<Score score={props.score} />}
                 rightComponent={<Lives lives={props.lives} />}
-
             />
         </View>
     );
@@ -34,14 +33,11 @@ const styles = {
 
         flex: 1,
         // flexDirection: 'row',
-        backgroundColor: '#104471',
+        backgroundColor: '#5ABC97',
         justifyContent: "space-around",
         justifyContent: 'center',
         // alignItems: 'center',
         height: 69,
-    },
-    headerText: {
-        fontSize: 20
     }
 }
 

@@ -11,19 +11,19 @@ export const levelCreator = (level) => {
     if (level <= 2) {
         //from 0-2
         numberOfColorPairs = 4
-        time = 8;
+        time = 500;
         numberOfCorrect = getRandomArbitrary(1, 2);
     }
     if (level > 2 && level < 5) {
         //from 3-5
         numberOfColorPairs = 6
-        time = 10;
+        time = 500;
         numberOfCorrect = getRandomArbitrary(2, 4);
     }
     if (level >= 5) {
         //greater than 5
         numberOfColorPairs = 8
-        time = 12;
+        time = 500;
         numberOfCorrect = getRandomArbitrary(3, 5);
     }
 
