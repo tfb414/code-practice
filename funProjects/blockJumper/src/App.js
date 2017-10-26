@@ -2,7 +2,8 @@
 //include the score header between levels, also change the message when they run out of time.
 //when they click the wrong thing it should draw a red line through it
 //add better looks
-//make it so procedurally generated have a certain number of right and wrong answers
+//color scheme - 5ABC97 EF814C F5C766 white 104471
+
 
 
 //you can also do shapes with the word of the shapes
@@ -14,6 +15,8 @@
 //two columns of answers
 //basic procedurally generated levels
 //time aspect
+//make it so procedurally generated have a certain number of right and wrong answers
+
 
 
 
@@ -28,6 +31,8 @@ import {
 
 } from 'react-native';
 import { NativeRouter, Route, Link } from 'react-router-native'
+
+
 
 import Level from './components/Level'
 import Menu from './components/Menu'
