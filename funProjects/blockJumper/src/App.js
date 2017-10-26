@@ -2,7 +2,8 @@
 //include the score header between levels, also change the message when they run out of time.
 //when they click the wrong thing it should draw a red line through it
 //add better looks
-//color scheme - 5ABC97 EF814C F5C766 white 104471
+//color scheme - 5ABC97(grene) EF814C(orange) F5C766(yellow) white 104471(blue)
+//add pause button
 
 
 
@@ -36,7 +37,6 @@ import { NativeRouter, Route, Link } from 'react-router-native'
 
 import Level from './components/Level'
 import Menu from './components/Menu'
-import Header from './components/Header'
 import renderIf from "./utility/renderIf"
 import GameOver from "./components/GameOver"
 import NextLevel from "./components/NextLevel"

@@ -10,7 +10,7 @@ import {
 
 
 import Box from './Box'
-import Header from './Header'
+import Header from './header/Header'
 import Goal from './Goal'
 
 
