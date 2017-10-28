@@ -18,26 +18,29 @@ export const levelCreator = (level) => {
         //from 3-5
         numberOfColorPairs = 6
         time = 500;
-        numberOfCorrect = getRandomArbitrary(2, 4);
+        numberOfCorrect = getRandomArbitrary(2, 3);
     }
     if (level >= 5) {
         //greater than 5
         numberOfColorPairs = 8
         time = 500;
-        numberOfCorrect = getRandomArbitrary(3, 5);
+        numberOfCorrect = getRandomArbitrary(3, 4);
     }
 
 
-    let criteriaType = ['Click the Words whose color matches itself', 'Click all words whose color does not match itself', 'Click all words that are colored ', 'Click all words that are not colored '];
-    let colors = ['blue', 'red', 'black', 'brown', 'yellow', 'purple', 'orange'];
+    let criteriaType = ['Click if the color matches the label', 'Click if the color does NOT match the label', 'Click all words that are colored ', 'Click all words that are not colored '];
+    let colorHex = ['#1C86EE', '#ff0000', '#000000', '#614126', '#FFA500', '#551A8B', '#458B00'];
+    let colorName = ['Blue', 'Red', 'Black', 'Brown', 'Orange', 'Purple', 'Green'];
 
 
-    generatePairs = (colors, numberOfColorPairs, criteriaType) => {
+    generatePairs = (colorHex, numberOfColorPairs, criteriaType) => {
 
-        let colorLength = colors.length - 1;
-        // let criteriaTypeNumber = getRandomArbitrary(0, 2);
-        let criteriaTypeNumber = getRandomArbitrary(0, 2)
-        let singleColor = colors[getRandomArbitrary(0, colorLength)];
+        let colorLength = colorHex.length - 1;
+        let index = getRandomArbitrary(0, colorLength)
+        let criteriaTypeNumber = getRandomArbitrary(0, 2);
+        // let criteriaTypeNumber = 
+        let singleColor = colorName[index];
+        let singleColorHex = colorHex[index];
         let criteriaMessage = criteriaType[criteriaTypeNumber];
         var i;
 
@@ -46,7 +49,7 @@ export const levelCreator = (level) => {
         // for (i = 0; i < numberOfColorPairs; i++) {
         //     colorPairs.push(createUnmatchedPairs())
 
-        //     colorPairs.push(executeCriteriaType(criteriaTypeNumber, color1, color2, singleColor));
+        //     colorPairs.push(executeCriteriaType(criteriaTypeNumber, colorText, color, singleColor));
         // }
 
         if (criteriaTypeNumber === 0) {
@@ -71,10 +74,10 @@ export const levelCreator = (level) => {
 
         if (criteriaTypeNumber === 2) {
             for (i = 0; i < numberOfCorrect; i++) {
-                colorPairs.push(createCertainColorPair(colorLength, singleColor));
+                colorPairs.push(createCertainColorPair(colorLength, singleColor, singleColorHex));
             }
             while (colorPairs.length < numberOfColorPairs) {
-                colorPairs.push(createNonSingleColor(colorLength, singleColor, false))
+                colorPairs.push(createNonSingleColor(colorLength, singleColor, false, index))
             }
             criteriaMessage = criteriaType[criteriaTypeNumber] + singleColor
         }
@@ -88,8 +91,12 @@ export const levelCreator = (level) => {
     }
 
     function createMatchedPairs(colorLength, trueOrFalse) {
-        let color1 = colors[getRandomArbitrary(0, colorLength)];
-        return [color1, color1, trueOrFalse];
+        let index = getRandomArbitrary(0, colorLength)
+        let color = colorHex[index];
+        let colorText = colorName[index]
+        //you need to fix this
+        //it is only running the random thing one time instead of a million times
+        return [colorText, color, trueOrFalse];
     }
 
     function createUnmatchedPairs(colorLength, trueOrFalse) {
@@ -98,27 +105,28 @@ export const levelCreator = (level) => {
         while (num1 === num2) {
             num2 = getRandomArbitrary(0, colorLength);
         }
-        let color1 = colors[num1];
-        let color2 = colors[num2];
-        return [color1, color2, trueOrFalse];
+        let color = colorHex[num1];
+        let colorText = colorName[num2];
+        return [colorText, color, trueOrFalse];
     }
 
-    function createCertainColorPair(colorLength, singleColor) {
+    function createCertainColorPair(colorLength, singleColor, singleColorHex) {
         let num1 = getRandomArbitrary(0, colorLength);
-        let color1 = colors[num1];
-        let color2 = singleColor;
-        return [color1, color2, true];
+
+        let color = singleColorHex;
+        let colorText = colorName[num1];
+        return [colorText, color, true];
     }
 
-    function createNonSingleColor(colorLength, singleColor, trueOrFalse) {
+    function createNonSingleColor(colorLength, singleColor, trueOrFalse, index) {
         let num1 = getRandomArbitrary(0, colorLength);
-        let num2 = getRandomArbitrary(0, colorLength)
-        while (num2 === singleColor) {
-            num2 = getRandomArbitrary(0, colorLength);
+        let num2 = getRandomArbitrary(0, colorLength);
+        while (num1 === index) {
+            num1 = getRandomArbitrary(0, colorLength);
         }
-        let color1 = colors[num1];
-        let color2 = colors[num2];
-        return [color1, color2, trueOrFalse];
+        let color = colorHex[num1];
+        let colorText = colorName[num2];
+        return [colorText, color, trueOrFalse];
     }
 
 
@@ -132,8 +140,8 @@ export const levelCreator = (level) => {
         return array;
     }
 
-    console.log(generatePairs(colors, numberOfColorPairs, criteriaType));
-    return generatePairs(colors, numberOfColorPairs, criteriaType)
+    console.log(generatePairs(colorHex, numberOfColorPairs, criteriaType));
+    return generatePairs(colorHex, numberOfColorPairs, criteriaType)
 
 }
 

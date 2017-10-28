@@ -15,7 +15,7 @@ const styles = {
     goalContainer: {
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: 'black',
+        backgroundColor: '#EF814C',
         justifyContent: "center",
         alignItems: 'center',
         height: 40,

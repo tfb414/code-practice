@@ -170,9 +170,10 @@ export default class Level extends Component {
         let boxColor = this.state.boxes[boxId][boxId].color;
         let isCorrect = this.state.boxes[boxId][boxId].isCorrect;
 
-
+        //add the styles to the view to make it space between, it needs tobe an array
         return (
             <View style={{ height: this.state.boxHeight }} key={boxId} >
+
                 <Box
                     boxText={boxText}
                     id={boxId}
@@ -261,29 +262,29 @@ const styles = StyleSheet.create({
 
         flexDirection: 'column',
         height: height,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+
     },
     boxContainerLeft: {
-        display: 'flex',
+        flex: 1,
         flexDirection: 'column',
         height: boxSpaceHeight,
-        backgroundColor: 'blue',
-        height: 30,
+        // backgroundColor: 'blue',
+
     },
     boxContainerRight: {
-        display: 'flex',
+
+        flex: 1,
         flexDirection: 'column',
         height: boxSpaceHeight,
-        backgroundColor: 'black',
-        height: 30
+        // backgroundColor: 'black',
     },
     boxContainer: {
         display: 'flex',
         flexDirection: 'row',
         height: boxSpaceHeight,
-        borderRadius: 12,
-        borderWidth: 0.5,
-        borderColor: 'red',
+        padding: 5,
+        justifyContent: 'space-around'
         // backgroundColor: 'purple'
 
     }

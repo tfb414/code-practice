@@ -38,7 +38,7 @@ export default class Box extends Component {
             if (this.props.isCorrect === "") {
                 return <Button
                     raised
-                    buttonStyle={{ backgroundColor: this.props.color, borderRadius: 10 }}
+                    buttonStyle={{ backgroundColor: this.props.color, borderRadius: 10, width: 150 }}
                     fontSize={30}
 
                     textStyle={{ textAlign: 'center' }}
@@ -49,38 +49,36 @@ export default class Box extends Component {
         }
 
         return (
-            <View>
-                <View style={[styles.box,
-                {
-                    backgroundColor: "white",
-                    width: this.props.width,
-                    height: this.props.height,
-                    // left: this.props.left,
+            <View style={styles.box}>
 
+                {display()}
+            </View>
 
-
-                }
-                ]}>
-
-                    {display()}
-                </View>
-            </View >
         )
 
     }
 }
 
+// <View style={[styles.box,
+//     {
+//         backgroundColor: "white",
+//         width: this.props.width,
+//         height: this.props.height,
+//         // left: this.props.left,
+
+
+
+//     }
+//     ]}> </View >
 
 
 const styles = StyleSheet.create({
     box: {
-        display: 'flex',
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         // position: 'absolute',
-        borderRadius: 4,
-        borderWidth: 0.5,
-        borderColor: 'grey',
+
     },
     text: {
         fontSize: 50

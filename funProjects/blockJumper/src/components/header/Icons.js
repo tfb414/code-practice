@@ -45,6 +45,7 @@ export const Lives = (props) => {
         for (i = 0; i < props.lives; i++) {
             livesDisplay.push(
                 <Icon style={styles.timeIcon}
+                    key={i}
                     name='male'
                     type='font-awesome'
                     color='#fff'
@@ -82,7 +83,7 @@ const styles = {
     headerText: {
         fontSize: 25,
         marginLeft: 10,
-        color: 'white'
+        color: '#fff'
     },
 
 }

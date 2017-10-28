@@ -6,6 +6,7 @@
 //add pause button
 //figure out the sizing of the buttons on each screen
 //also see if you want to have background color, color of the text, and written color
+//fix error in criteria 2 where there are more than one correct answer but it moves on to the next page
 
 
 
