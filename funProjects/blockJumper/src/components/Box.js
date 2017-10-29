@@ -6,7 +6,7 @@ import { Button, Icon } from 'react-native-elements'
 
 
 let { height, width } = Dimensions.get('window');
-console.log(height);
+
 
 
 

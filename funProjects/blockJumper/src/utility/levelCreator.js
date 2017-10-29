@@ -8,37 +8,39 @@ export const levelCreator = (level) => {
     let numberOfColorPairs;
     let time;
     let numberOfCorrect;
+    let criteriaTypeNumber = getRandomArbitrary(0, 2);
+    // let criteriaTypeNumber = 0;
+
     if (level <= 2) {
         //from 0-2
-        numberOfColorPairs = 4
-        time = 500;
-        numberOfCorrect = getRandomArbitrary(1, 2);
+        numberOfColorPairs = 12
+        time = 10;
+        numberOfCorrect = getRandomArbitrary(2, 3);
     }
     if (level > 2 && level < 5) {
         //from 3-5
-        numberOfColorPairs = 6
-        time = 500;
-        numberOfCorrect = getRandomArbitrary(2, 3);
+        numberOfColorPairs = 8
+        time = 11;
+        numberOfCorrect = getRandomArbitrary(3, 4);
     }
     if (level >= 5) {
         //greater than 5
-        numberOfColorPairs = 8
-        time = 500;
-        numberOfCorrect = getRandomArbitrary(3, 4);
+        numberOfColorPairs = 10
+        time = 12;
+        numberOfCorrect = getRandomArbitrary(4, 6);
     }
 
 
-    let criteriaType = ['Click if the color matches the label', 'Click if the color does NOT match the label', 'Click all words that are colored ', 'Click all words that are not colored '];
+    let criteriaType = ['Click if the word matches the color', 'Click if the word does NOT match the color', 'Click all boxes that are colored ', 'Click all words that are not colored '];
     let colorHex = ['#1C86EE', '#ff0000', '#000000', '#614126', '#FFA500', '#551A8B', '#458B00'];
     let colorName = ['Blue', 'Red', 'Black', 'Brown', 'Orange', 'Purple', 'Green'];
 
 
-    generatePairs = (colorHex, numberOfColorPairs, criteriaType) => {
+    generatePairs = () => {
 
         let colorLength = colorHex.length - 1;
         let index = getRandomArbitrary(0, colorLength)
-        let criteriaTypeNumber = getRandomArbitrary(0, 2);
-        // let criteriaTypeNumber = 
+
         let singleColor = colorName[index];
         let singleColorHex = colorHex[index];
         let criteriaMessage = criteriaType[criteriaTypeNumber];
@@ -46,11 +48,8 @@ export const levelCreator = (level) => {
 
 
         let colorPairs = [];
-        // for (i = 0; i < numberOfColorPairs; i++) {
-        //     colorPairs.push(createUnmatchedPairs())
 
-        //     colorPairs.push(executeCriteriaType(criteriaTypeNumber, colorText, color, singleColor));
-        // }
+
 
         if (criteriaTypeNumber === 0) {
             for (i = 0; i < numberOfCorrect; i++) {
@@ -59,6 +58,7 @@ export const levelCreator = (level) => {
             while (colorPairs.length < numberOfColorPairs) {
                 colorPairs.push(createUnmatchedPairs(colorLength, false));
             }
+
 
         }
 
@@ -139,9 +139,17 @@ export const levelCreator = (level) => {
         }
         return array;
     }
-
-    console.log(generatePairs(colorHex, numberOfColorPairs, criteriaType));
-    return generatePairs(colorHex, numberOfColorPairs, criteriaType)
+    // function createListOfPairs(correctAnswer, incorrectAnswer, colorPairs) {
+    //     console.log(correctAnswer);
+    //     for (i = 0; i < numberOfCorrect; i++) {
+    //         colorPairs.push(correctAnswer);
+    //     }
+    //     while (colorPairs.length < numberOfColorPairs) {
+    //         colorPairs.push(incorrectAnswer);
+    //     }
+    //     return colorPairs
+    // }
+    return generatePairs()
 
 }
 

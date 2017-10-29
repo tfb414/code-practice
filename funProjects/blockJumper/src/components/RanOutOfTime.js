@@ -3,39 +3,49 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
     TouchableHighlight,
     style
 } from 'react-native';
-
+import { Button } from 'react-native-elements'
 
 
 const RanOutOfTime = (props) => {
     //but a button in here that takes a function that changes the state in app.js
     return (
-        <View style={styles.container}>
-            <Text>You ran out of time!</Text>
-            <TouchableHighlight onPress={props.nextLevel}>
-                <View><Text style={styles.welcome}>Try Again</Text></View>
-            </TouchableHighlight>
+        <View style={{ marginTop: props.height / 8 }}>
+            <Text style={styles.welcome}>Level {props.level} Failed!</Text>
+            <Text style={styles.welcome}>You ran out of time.</Text>
+            <View style={styles.container}>
+                <Button
+                    raised
+                    buttonStyle={{ backgroundColor: '#F5C766', borderRadius: 10 }}
+                    fontSize={40}
+                    textStyle={{ textAlign: 'center' }}
+                    title={`Next Level`}
+                    onPress={props.nextLevel}
+                />
+            </View>
+
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#bb0000',
+
         margin: 50
     },
     welcome: {
         fontSize: 40,
+        // fontFamily: 'Lato-Bold',
+        fontWeight: 'bold',
         textAlign: 'center',
         margin: 10,
-        color: '#000000',
+        color: '#fff',
+        borderRadius: 30,
+        backgroundColor: '#5ABC97',
     },
 });
+
 
 export default RanOutOfTime;

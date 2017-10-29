@@ -15,6 +15,7 @@ import Goal from './Goal'
 
 
 let { height, width } = Dimensions.get('window');
+let { boxContainerHeight } = height - 109
 
 //pass in the numberOfBoxes
 //pass in amount of Time
@@ -53,6 +54,7 @@ export default class Level extends Component {
 
     measureView(event) {
         let boxHeight = event.nativeEvent.layout.height / this.state.level.length
+        console.log(event.nativeEvent.layout.height);
         this.setState({
             height: event.nativeEvent.layout.height,
             width: event.nativeEvent.layout.width,
@@ -95,10 +97,10 @@ export default class Level extends Component {
         })
 
         return (
-            <View style={styles.container}>
+            <View style={styles.container} onLayout={(event) => this.measureView(event)}>
                 <Header title={"Color Clicker!"} time={this.state.time} score={this.state.score} lives={this.props.lives} />
                 <Goal title={this.state.criteria} />
-                <View onLayout={(event) => this.measureView(event)} style={styles.boxContainer}>
+                <View style={styles.boxContainer}>
                     <View style={styles.boxContainerLeft}>
                         {leftBoxes}
                     </View>
@@ -159,7 +161,7 @@ export default class Level extends Component {
 
         this.setState({
             boxes: newBox,
-            boxHeight: (height - 80 - 40) / level.length * 2,
+            boxHeight: ((height - 80 - 30) / level.length * 2) - 10,
         })
     }
 
@@ -179,7 +181,6 @@ export default class Level extends Component {
                     id={boxId}
                     color={boxColor}
                     width={boxWidth / 2}
-                    height={this.state.boxHeight}
 
                     onRemoveLife={() => this._removeBox(boxId)}
                     isCorrect={isCorrect}
@@ -282,8 +283,8 @@ const styles = StyleSheet.create({
     boxContainer: {
         display: 'flex',
         flexDirection: 'row',
-        height: boxSpaceHeight,
-        padding: 5,
+        height: boxContainerHeight,
+        padding: 1,
         justifyContent: 'space-around'
         // backgroundColor: 'purple'
 
