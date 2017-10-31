@@ -38,7 +38,7 @@ export default class Box extends Component {
             if (this.props.isCorrect === "") {
                 return <Button
                     raised
-                    buttonStyle={{ backgroundColor: this.props.color, borderRadius: 10, width: 150 }}
+                    buttonStyle={{ backgroundColor: this.props.color, borderRadius: 10, width: 150, height: 70 }}
                     fontSize={30}
 
                     textStyle={{ textAlign: 'center' }}

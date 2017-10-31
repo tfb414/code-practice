@@ -31,13 +31,18 @@ const HeaderComponent = (props) => {
 const styles = {
     headerContainer: {
 
-        flex: 1,
+        // flex: 1,
+        display: 'flex',
         // flexDirection: 'row',
         backgroundColor: '#5ABC97',
         justifyContent: "space-around",
         justifyContent: 'center',
         // alignItems: 'center',
         height: 69,
+
+
+
+
     }
 }
 

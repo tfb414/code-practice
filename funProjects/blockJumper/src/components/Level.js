@@ -53,7 +53,7 @@ export default class Level extends Component {
 
 
     measureView(event) {
-        let boxHeight = event.nativeEvent.layout.height / this.state.level.length
+        // let boxHeight = event.nativeEvent.layout.height / this.state.level.length
         console.log(event.nativeEvent.layout.height);
         this.setState({
             height: event.nativeEvent.layout.height,
@@ -62,28 +62,22 @@ export default class Level extends Component {
     }
     componentWillMount() {
         let level = this.props.level(this.props.level);
-
         this._createLevelFromProps(level);
         this._createBoxStates(level[0]);
-
-
     }
     componentDidMount() {
-
         this.countdown = setInterval(() => {
-
             if (this.state.time === 0) {
                 clearInterval(this.countdown)
             }
-
             this._updateTimer();
-
         }, 1000);
     }
 
     componentWillUnmount() {
         clearInterval(this.countdown);
     }
+
     render() {
         let leftBoxes = []
         let rightBoxes = []
@@ -98,6 +92,7 @@ export default class Level extends Component {
 
         return (
             <View style={styles.container} onLayout={(event) => this.measureView(event)}>
+
                 <Header title={"Color Clicker!"} time={this.state.time} score={this.state.score} lives={this.props.lives} />
                 <Goal title={this.state.criteria} />
                 <View style={styles.boxContainer}>
@@ -106,6 +101,7 @@ export default class Level extends Component {
                     </View>
                     <View style={styles.boxContainerRight}>
                         {rightBoxes}
+
                     </View>
                 </View>
             </View>
@@ -135,9 +131,7 @@ export default class Level extends Component {
 
 
     _createBoxStates = (level) => {
-
         let newBox = []
-
         level.forEach((key, idx) => {
 
             let isItTrue = level[idx][2];
@@ -157,11 +151,14 @@ export default class Level extends Component {
 
         })
 
-
+        //create if statements 
 
         this.setState({
             boxes: newBox,
-            boxHeight: ((height - 80 - 30) / level.length * 2) - 10,
+            // boxHeight: ((height - 110) / level.length * 2) - 10
+            boxHeight: ((height - 109) / 6) - 6
+            // boxHeight: 90,
+
         })
     }
 
@@ -260,10 +257,11 @@ export default class Level extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
         flexDirection: 'column',
         height: height,
         backgroundColor: 'white',
+
 
     },
     boxContainerLeft: {
