@@ -8,6 +8,7 @@ mongo.connect(url, function (err, db) {
 
         console.log(birds.map(function (bird) {
             if (bird.age > parseInt(process.argv[2])) {
+                console.log(bird)
                 return bird;
             }
 
