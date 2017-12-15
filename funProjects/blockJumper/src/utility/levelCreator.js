@@ -13,7 +13,7 @@ export const levelCreator = (level) => {
 
     if (level <= 2) {
         //from 0-2
-        numberOfColorPairs = 12
+        numberOfColorPairs = 6
         time = 10;
         numberOfCorrect = getRandomArbitrary(2, 3);
     }
