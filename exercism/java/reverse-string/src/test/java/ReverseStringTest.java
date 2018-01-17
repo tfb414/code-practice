@@ -10,7 +10,7 @@ public class ReverseStringTest {
         assertEquals("", new ReverseString().reverse(""));
     }
 
-    @Ignore("Remove to run test")
+    
     @Test
     public void testAWord() {
         assertEquals("tobor", new ReverseString().reverse("robot"));
