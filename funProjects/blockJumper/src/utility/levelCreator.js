@@ -46,7 +46,6 @@ export const levelCreator = (level) => {
         let criteriaMessage = criteriaType[criteriaTypeNumber];
         var i;
 
-
         let colorPairs = [];
 
 

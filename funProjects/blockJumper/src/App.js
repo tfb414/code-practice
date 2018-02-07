@@ -81,18 +81,43 @@ export default class blockJumper extends Component {
     render() {
         console.log(this.state.height)
         return (
-            <View style={[styles.container, { width: this.state.width, height: this.state.height }]} onLayout={(event) => this.measureView(event)}>
-                {renderIf(this.state.active.menu)(<Menu startGame={this._goToLevel} height={this.state.height} />)}
-                {renderIf(this.state.active.level)(<Level score={this.state.score} ranOutOfTime={this._ranOutOfTime} lives={this.state.lives} level={this._createLevel} onRemoveLife={this._removeLife} onGameOver={this._goToGameOver} onNextLevel={this._goToNextLevel} addScore={(score) => { this._addScore(score) }} />)}
-                {renderIf(this.state.active.NextLevel)(<NextLevel nextLevel={this._goToLevel} level={this.state.level} height={this.state.height} />)}
-                {renderIf(this.state.active.ranOutOfTime)(<RanOutOfTime nextLevel={this._goToLevel} height={this.state.height} />)}
-                {renderIf(this.state.active.gameOver)(<GameOver score={this.state.score} />)}
+            <View
+                style={[styles.container, { width: this.state.width, height: this.state.height }]}
+                onLayout={(event) => this.measureView(event)}>
+                {renderIf(this.state.active.menu)(
+                    <Menu
+                        startGame={this._goToLevel}
+                        height={this.state.height}
+                    />)}
+                {renderIf(this.state.active.level)(
+                    <Level
+                        score={this.state.score}
+                        ranOutOfTime={this._ranOutOfTime}
+                        lives={this.state.lives}
+                        level={this._createLevel}
+                        onRemoveLife={this._removeLife}
+                        onGameOver={this._goToGameOver}
+                        onNextLevel={this._goToNextLevel}
+                        addScore={(score) => { this._addScore(score) }}
+                    />)}
+                {renderIf(this.state.active.NextLevel)(
+                    <NextLevel
+                        nextLevel={this._goToLevel}
+                        level={this.state.level}
+                        height={this.state.height}
+                    />)}
+                {renderIf(this.state.active.ranOutOfTime)(
+                    <RanOutOfTime
+                        nextLevel={this._goToLevel}
+                        height={this.state.height}
+                    />)}
+                {renderIf(this.state.active.gameOver)(
+                    <GameOver
+                        score={this.state.score}
+                    />)}
             </View >
         );
-
-
     }
-
 
     _removeLife = () => {
         if (this.state.lives === 1) {
@@ -180,14 +205,7 @@ export default class blockJumper extends Component {
         return levelCreator(this.state.level);
         // let criteriaType = ['Click all words that are the same color as the word', 'click all the words that are not the same color as the word', 'click all the words that are colored '];
         // let colors = ['blue', 'red', 'black', 'brown', 'yellow', 'purple', 'orange'];
-
-
-
     }
-
-
-
-
     //https://facebook.github.io/react-native/docs/navigation.html
 
 }

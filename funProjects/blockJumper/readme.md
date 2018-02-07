@@ -20,6 +20,9 @@ You must have an andriod simulator setup
 
 **react-native run-android**
 
+install genymotion for android
+react-native run-android
+
 
 
 
