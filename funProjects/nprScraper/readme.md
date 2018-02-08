@@ -20,3 +20,5 @@ curl -X \"POST\" -H \"Authorization: Basic ZjM4ZjAw...WY0MzE=\" -d grant_type=cl
 
 search for an artist's tracks
 search for a track and compare them
+
+Client ID 0b589fbd32c24d108455ae4e9374f9e3
