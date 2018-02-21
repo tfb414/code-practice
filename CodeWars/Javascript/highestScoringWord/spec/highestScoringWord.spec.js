@@ -1,5 +1,5 @@
 let jasmine = require('jasmine');
-let { letterValue, wordValue } = require('../highestScoringWord.js');
+let { letterValue, wordValue, highestValueWord } = require('../highestScoringWord.js');
 // import * as highestScoringWord from 'highestScoringWord';
 
 describe('count a letter', () => {
@@ -8,6 +8,9 @@ describe('count a letter', () => {
     });
     it('should return the total value of the word', () => {
         expect(wordValue('timmy')).toEqual(80);
+    })
+    it('should return the word with the highest value', () => {
+        expect(high('timmy is dumb indeed')).toEqual('timmy');
     })
 })
 

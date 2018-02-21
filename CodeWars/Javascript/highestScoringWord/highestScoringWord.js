@@ -1,7 +1,3 @@
-// let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", 
-// "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", 
-// "x", "y", "z"];
-
 const alphabetObj = {
     "a": 1,
     "b": 2,
@@ -31,19 +27,23 @@ const alphabetObj = {
     "z": 26,
 }
 
-function letterValue(letter) {
+letterValue = (letter) => {
     return alphabetObj[letter];
 };
 
-function wordValue(word) {
-    let splitWord = word.split('');
-    //add a zero to the fornt of the word
+wordValue = (word) => {
+    let splitWord = word.split('')
+    splitWord.unshift(0);
     return splitWord.reduce((acc, val) => acc + parseInt(letterValue(val), 10));
 }
 
-module.exports = {
-    letterValue,
-    wordValue
+high = (words) => {
+    let bestWord = ''
+    let wordsArray = words.split(" ");
+    wordsArray.forEach((word) => {
+        bestWord = (wordValue(word) > wordValue(bestWord)) ? word : bestWord;
+    })
+    return bestWord;
 }
 
 
