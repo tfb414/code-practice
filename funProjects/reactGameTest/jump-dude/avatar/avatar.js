@@ -9,9 +9,9 @@ export default class Avatar extends React.Component {
         }
     }
 
-    colorChange() {
-        Alert.alert('this is not a test')
-        this.setState({ backgroundColor: 'black ' })
+    colorChange = () => {
+        const color = this.state.backgroundColor === 'red' ? 'black' : 'red';
+        this.setState({ backgroundColor: color })
     };
 
     render() {
