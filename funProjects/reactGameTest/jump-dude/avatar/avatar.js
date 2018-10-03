@@ -4,21 +4,11 @@ import { StyleSheet, View, Button, Alert, TouchableHighlight } from 'react-nativ
 export default class Avatar extends React.Component {
     constructor() {
         super();
-        this.state = {
-            backgroundColor: 'red'
-        }
     }
-
-    colorChange = () => {
-        const color = this.state.backgroundColor === 'red' ? 'black' : 'red';
-        this.setState({ backgroundColor: color })
-    };
 
     render() {
         return (
-            <TouchableHighlight onPress={this.colorChange}>
-                <View style={[styles.avatar, { backgroundColor: this.state.backgroundColor }]} />
-            </TouchableHighlight >
+            <View style={[styles.avatar, { backgroundColor: this.props.avatarColor }]} />
         );
     }
 
