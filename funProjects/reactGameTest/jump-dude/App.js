@@ -12,8 +12,9 @@ export default class App extends React.Component {
   }
 
   colorChange = () => {
-    const color = this.state.avatarColor === 'red' ? 'black' : 'red';
-    this.setState({ avatarColor: color })
+    const color = this.state.avatarColor === 'red' ? 'blue' : 'red';
+    this.setState({ avatarColor: color });
+    console.log(this.state.avatarColor);
   };
 
   render() {
