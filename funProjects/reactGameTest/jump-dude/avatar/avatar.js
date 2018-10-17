@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Button, Alert, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 
 export default class Avatar extends React.Component {
     constructor() {
@@ -7,17 +7,20 @@ export default class Avatar extends React.Component {
     }
 
     render() {
+        const spriteImage = this.props.jump
+        ? require('../images/sprite/adventurer-jump-03.png')
+        : require('../images/sprite/adventurer-idle-00.png');
+
+
         return (
-            <View style={[styles.avatar, { backgroundColor: this.props.avatarColor }]} />
+            <View>
+                <Image
+                style={{width: 100, height: 100}}
+                source={spriteImage}
+                />
+            </View>
         );
     }
-
 }
-const styles = StyleSheet.create({
-    avatar: {
-        height: 50,
-        width: 50,
-    }
-});
 
 

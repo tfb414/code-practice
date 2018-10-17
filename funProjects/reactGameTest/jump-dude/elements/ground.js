@@ -11,7 +11,7 @@ export default class Ground extends React.Component {
 
 const styles = StyleSheet.create({
     ground: {
-        backgroundColor: 'purple',
+        backgroundColor: 'yellow',
         height: 30,
         width: '100%',
     }
