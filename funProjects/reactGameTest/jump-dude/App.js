@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Alert } from 'react-native';
 import Avatar from './avatar/avatar';
 import Ground from './elements/ground';
 
@@ -7,7 +7,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      avatarColor: 'red'
+      jump: false,
     }
   }
 
@@ -17,17 +17,20 @@ export default class App extends React.Component {
     console.log(this.state.avatarColor);
   };
 
+  toggleJump = () => {
+    this.setState({jump: !this.state.jump})
+  }
+
+  spriteAction =  () => {
+    console.log('teststselkfjalksdjfalksjdflkaj');
+}
   render() {
     return (
-
-      <TouchableHighlight style={styles.container} onPress={this.colorChange}>
-        <View >
-          <Avatar avatarColor={this.state.avatarColor}></Avatar>
-          <Ground></Ground>
-        </View>
-      </TouchableHighlight>
-
-
+        <TouchableOpacity style={styles.container} activeOpacity={1} onPress={this.toggleJump}>
+          <View>
+            <Avatar jump={this.state.jump}></Avatar>
+          </View>
+        </TouchableOpacity>
     );
   }
 }
@@ -35,7 +38,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'purple',
     alignItems: 'center',
     justifyContent: 'center',
   }
